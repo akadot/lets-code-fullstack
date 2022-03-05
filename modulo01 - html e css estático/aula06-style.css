@@ -1,0 +1,30 @@
+#div01{
+	display: inline-block;
+	width: 100px;
+}
+
+#div02{
+	display: inline;
+	/* nao funciona width/height */
+}
+
+#div03{
+	/* position: static; default, position changers doesn't work*/
+	position: relative; /*parent relative position*/
+	position: absolute; /*ignores parents, follow relative position parent*/
+	position: fixed; /*fixed*/
+	position: sticky; /*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_sticky_element*/
+}
+
+.test-flex{
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.size{
+	width: 50px;
+	height: 50px;
+}

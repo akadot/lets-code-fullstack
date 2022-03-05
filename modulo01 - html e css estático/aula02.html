@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Aula 02 - Listas e Teblas</title>
+
+	<style>
+		table,
+		th,
+		td {
+			border: 1px solid black;
+		}
+
+		td,
+		th {
+			background-color: white;
+		}
+
+		table {
+			background-color: black;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>Lista 01</h1>
+	<ul type="sqaure">
+		<li>a</li>
+		<li>aa</li>
+		<li>aaa</li>
+		<li>aaaa</li>
+		<li>
+			aaaaaa:
+			<ul>
+				<li>b</li>
+				<li>bb</li>
+				<li>bbb</li>
+				<li>bbbb</li>
+				<li>bbbbbb</li>
+			</ul>
+
+		</li>
+	</ul>
+
+
+	<h1>Lista 02</h1>
+	<ol type="i" start="3">
+		<li>s</li>
+		<li>ss</li>
+		<li>sss</li>
+		<li>ssss</li>
+		<li>sssss</li>
+	</ol>
+
+	<h1>Lista 03</h1>
+	<ol type="i" start="3" reversed>
+		<li>s</li>
+		<li>ss</li>
+		<li>sss</li>
+		<li>ssss</li>
+		<li>sssss</li>
+	</ol>
+
+	<h1>Tabela de Gastos</h1>
+	<table>
+
+		<thead>
+			<tr>
+				<th colspan="4">Janeiro</th>
+			</tr>
+
+			<tr>
+				<th>Identificação do Gasto</th>
+				<th>Valor (R$)</th>
+				<th>Data</th>
+				<th>Tipo de Gasto</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Lanchozin</td>
+				<td>18,00</td>
+				<td rowspan="2">12/01</td>
+				<td>Saída</td>
+			</tr>
+			<tr>
+				<td>Lanchozin</td>
+				<td>18,00</td>
+				<!-- <td>12/01</td> -->
+				<td>Saída</td>
+			</tr>
+			<tr>
+				<td>Suquin</td>
+				<td>8,00</td>
+				<td>12/01</td>
+				<td>Saída</td>
+			</tr>
+			<tr>
+				<td>Bolsa</td>
+				<td>225,00</td>
+				<td>10/02</td>
+				<td>Entrada</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>

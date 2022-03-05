@@ -1,0 +1,175 @@
+* {
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	color: #fff;
+	background-color: #191919;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+main {
+	text-align: center;
+	padding-top: 10px;
+	width: 90%;
+	height: max-content;
+	background-color: #26262a;
+	border: 2px solid #26262a;
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+}
+
+main h1 {
+	color: #f5b324;
+}
+
+main p {
+	color: #c1c1c1;
+	margin-bottom: 40px;
+}
+
+form label{
+	font-size: .9em;
+	font-weight: 600;
+}
+
+h4{
+	font-size: 1.1em;
+	font-weight: 600;
+}
+
+form input {
+	width: 100%;
+	padding: 8px 5px;
+	border: 1px solid #404047;
+	border-radius: 2px;
+	background-color: #191919;
+	color: #fff;
+}
+
+form input:focus {
+	border-color: #f5b324;
+}
+
+form input:invalid{
+	border-color: tomato;
+}
+
+.checklist {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	width: 100%;
+	padding: 0 20px;
+}
+
+.general-infos,
+.car-status {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 100%;
+	margin: 0 10px;
+}
+
+#car-infos {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 100%;
+}
+
+#driver-infos {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 100%;
+}
+
+#driver-infos input {
+	width: 100%;
+}
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.status-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding-bottom: 5px;
+	margin-bottom: 25px;
+	justify-content: space-between;
+	border-bottom: 1px solid #f5b324;
+}
+
+.status-input{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	width: 35%;
+}
+
+.status-input input{
+	margin: 0;
+	padding: 0;
+}
+
+.status-container label {
+	width: 100%;
+}
+
+#btn-container {
+	padding: 20px;
+}
+
+#action-btn {
+	padding: 12px 30px;
+	width: 100%;
+	background-color: #f5b324;
+	font-weight: 600;
+	font-size: 1em;
+	color: #191919;
+	border-radius: 2px;
+	border: 1px solid #f5b324;
+	transition: all .2s ease-in;
+	cursor: pointer;
+}
+
+#action-btn:hover {
+	background-color: #ffe02d;
+	border-color: #ffe02d;
+}
+
+form span{
+	color: tomato;
+}
+
+#result-container {
+	width: 100%;
+	height: 100%;
+	padding: 10px 0;
+	background-color: #191919;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+#result {
+	color: #f5b324;
+	font-weight: 600;
+}

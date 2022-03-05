@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Aula 03 - Formulários</title>
+</head>
+
+<body>
+	<form method="GET">
+		<div>
+			<label for="texto">Nome</label>
+			<input name="texto" type="text" id="texto">
+		</div>
+
+		<div>
+			<label for="email">Email</label>
+			<input name="email" type="email" id="email">
+		</div>
+
+		<div>
+			<label for="password">Password</label>
+			<input name="password" type="password" id="password">
+		</div>
+
+		<div>
+			<input name="termos" type="checkbox" id="termos">
+			<label for="termos">Aceite os termos.</label>
+		</div>
+
+		<div>
+			<p>O que você prefere?</p>
+			<input type="radio" id="r1" value="banana" name="frutas">
+			<label for="r1">Banana</label>
+			<input type="radio" id="r2" value="maçã" name="frutas">
+			<label for="r2">Maçã</label>
+			<input type="radio" id="r3" value="morango" name="frutas">
+			<label for="r3">Morango</label>
+		</div>
+
+		<div>
+			<label for="suggest">Sugestões:</label>
+			<textarea id="suggest" cols="30" rows="10" placeholder="ksaksdksk"></textarea>
+		</div>
+
+		<input type="submit" value="Enviar">
+	</form>
+</body>
+
+</html>

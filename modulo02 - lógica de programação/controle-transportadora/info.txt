@@ -1,0 +1,18 @@
+Checklist:
+* Placa do carro - string (required)
+* Modelo - string
+* ano - number
+* Km - number (required)
+* Nome do motorista - string (required)
+* Matricula do motorista - number (required)
+* Estado dos Pneus      - OK/Não OK - boolean (required to quit)
+* Lataria do carro      - OK/Não OK - boolean
+* Farois                - OK/Não OK - boolean (required to quit)
+* Nivel de combustível  - OK/Não OK - boolean
+
+if(something is wrong){
+	AcionarLider.SMS()
+}else{
+	Portaria.autorizar()
+}
+

@@ -1,0 +1,158 @@
+:root{
+	--main: #0050ff;
+	--second: #00d4ff;
+	--fg: #202020;
+	--fg-second: #757778;
+	--bg: #fff;
+}
+
+*::-webkit-scrollbar{
+	width: 8px;
+}
+
+*::-webkit-scrollbar-thumb{
+	background: var(--fg);
+}
+
+*::-webkit-scrollbar-track{
+	background: transparent;
+}
+
+*{
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	scrollbar-width: 8px;
+	scrollbar-track-color: transparent;
+
+}
+
+body{
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: linear-gradient(#0016ff, #00d4ff);
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.container{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	
+}
+
+.calcContent{
+	background-color: #fff;
+	width: 400px;
+	border: 2px solid #fff;
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0,0,0,0.12) 0px -12px 30px, rgba(0,0,0,0.12) 0px 4px 6px, rgba(0,0,0,0.17) 0px 12px 13px, rgba(0,0,0,0.09) 0px -3px 5px;
+	z-index: 1;
+}
+
+.calcContent header{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: space-around;
+	height: 9em;
+	background-color: #fff;
+	margin-bottom: 3px;
+	padding: 15px 10px;
+	border-radius: 10px 10px 0 0;
+	overflow-x: auto;
+}
+
+.calcContent header #operation{
+	color: var(--fg-second);
+	font-size: medium;
+	text-align: right;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.calcContent header #display{
+	font-size: xx-large;
+	font-weight: 600;
+	color: var(--fg);
+	text-align: right;
+	word-wrap: break-word;
+	word-break: break-all;
+	transition: all 0.2s ease-in-out;
+}
+
+#calc{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: auto;
+	grid-area: auto;
+	gap: 10px;
+	padding:0 10px 10px 10px;
+}
+
+#calc button{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 1em;
+	padding: 10px;
+	margin: 2px;
+	border: none;
+	border-radius: 5px;
+	transition: filter 0.2s ease-in-out;
+	cursor: pointer;
+}
+
+#calc button:hover{
+	filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.493));
+}
+
+#calc button.btn{
+	background-color: var(--main);
+	color: var(--bg);
+	font-weight: 600;
+}
+
+#calc button.numb{
+	background-color: var(--bg);
+	color: var(--fg);
+}
+
+#calc button.equal, #calc button.clear{
+	background-color: var(--bg);
+	border: 3px solid var(--main);
+	color: var(--main);
+	font-weight: 600;
+}
+
+.history{
+	width: 300px;
+	height: 400px;
+	background-color: #dce6f1a6;
+	border-radius: 0 10px 10px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	padding: 10px 15px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0,0,0,0.12) 0px -12px 30px, rgba(0,0,0,0.12) 0px 4px 6px, rgba(0,0,0,0.17) 0px 12px 13px, rgba(0,0,0,0.09) 0px -3px 5px;
+	z-index: 0;
+}
+
+.history h1{
+	font-size: 1.2em;
+	color: var(--fg);
+	margin-bottom: 10px;
+}
+
+.history section{
+	font-style: italic;
+	color: rgb(48, 48, 48);
+	padding-right: 15px;
+	overflow: auto;
+}
+
+.history section p{
+	margin: 10px 0;
+	text-align: right;
+}

@@ -1,0 +1,20 @@
+html{
+	scroll-behavior: smooth;
+}
+
+article{
+	border: 5px dashed red;
+	max-width: 500px;
+	margin: 10% auto;
+}
+
+p{
+	font-size: 32pt;
+	word-break: break-all;
+}
+
+/* 
+> - filho direto
+:first-child() primeiro filho
+:nth-child() 
+ */

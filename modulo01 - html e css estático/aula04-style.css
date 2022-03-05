@@ -1,0 +1,28 @@
+header,
+		nav,
+		main,
+		article,
+		aside,
+		footer {
+			margin: 10px 0;
+		}
+
+		header {
+			border: 1px solid tomato;
+		}
+
+		nav {
+			border: 1px solid blue;
+		}
+
+		article {
+			border: 1px solid green;
+		}
+
+		aside {
+			border: 1px solid orange;
+		}
+
+		footer {
+			border: 1px solid pink;
+		}

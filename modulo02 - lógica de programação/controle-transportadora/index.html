@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="./index.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<title>Checklist</title>
+</head>
+
+<body>
+	<main>
+		<h1>Let's Code Transportes</h1>
+		<p>Preencha o checklist para liberar seu acesso.</p>
+		<form>
+			<section class="checklist">
+				<section class="general-infos">
+					<section id="car-infos">
+						<section class="input-container">
+							<label for="carPlate">Placa do Veículo *</label>
+							<input type="text" name="carPlate" id="carPlate" required>
+						</section>
+						<section class="input-container">
+							<label for="carModel">Modelo do Veículo</label>
+							<input type="text" name="carModel" id="carModel">
+						</section>
+						<section class="input-container">
+							<label for="carYear">Ano do Veículo</label>
+							<input type="number" name="carYear" id="carYear" min="1900" max="2099" value="2022">
+						</section>
+						<section class="input-container">
+							<label for="carKM">KM do Veículo *</label>
+							<input type="number" name="carKM" id="carKM" min="0" step="0.1" required>
+						</section>
+					</section>
+					<section id="driver-infos">
+						<section class="input-container">
+							<label for="driverName">Nome do Motorista *</label>
+							<input type="text" name="driverName" id="driverName" pattern="[A-Za-z]+" title="Somente Letras" required>
+						</section>
+						<section class="input-container">
+							<label for="driverLicense">Matrícula do Motorista *</label>
+							<input type="text" name="driverLicense" id="driverLicense" required>
+						</section>
+					</section>
+				</section>
+
+				<section class="car-status">
+					<section class="status-container">
+						<h4>Estado dos Pneus:</h4>
+						<section class="status-input">
+							<input type="radio" name="pneus" id="pneusOk" value="ok">
+							<label for="pneusOk">OK</label>
+							<input type="radio" name="pneus" id="pneusNaoOk">
+							<label for="pneusNaoOk">Não OK</label>
+						</section>
+					</section>
+
+					<section class="status-container">
+						<h4>Estado da Lataria:</h4>
+						<section class="status-input">
+							<input type="radio" name="lataria" id="latariaOk" value="ok">
+							<label for="latariaOk">OK</label>
+							<input type="radio" name="lataria" id="latariaNaoOk">
+							<label for="latariaNaoOk">Não OK</label>
+						</section>
+					</section>
+
+					<section class="status-container">
+						<h4>Estado dos Faróis:</h4>
+						<section class="status-input">
+							<input type="radio" name="light" id="lightOk" value="ok">
+							<label for="lightOk">OK</label>
+							<input type="radio" name="light" id="lightNaoOk">
+							<label for="lightNaoOk">Não OK</label>
+						</section>
+					</section>
+
+					<section class="status-container">
+						<h4>Estado do Combustível:</h4>
+						<section class="status-input">
+							<input type="radio" name="gas" id="gasOk" value="ok">
+							<label for="gasOk">OK</label>
+							<input type="radio" name="gas" id="gasNaoOk">
+							<label for="gasNaoOk">Não OK</label>
+						</section>
+					</section>
+
+				</section>
+			</section>
+
+			<span>(*) - Campos Obrigatórios</span>
+
+			<section id="btn-container">
+				<button id="action-btn">Verificar</button>
+			</section>
+		</form>
+
+
+		<section id="result-container">
+			<h3>Situação do Veículo:</h3>
+			<span id="result"></span>
+		</section>
+	</main>
+</body>
+
+</html>
