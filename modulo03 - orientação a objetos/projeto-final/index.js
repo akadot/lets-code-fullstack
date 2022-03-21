@@ -1,29 +1,30 @@
-const Carrinho = require("./components/carrinho");
-const Prato = require("./components/prato");
+const Lojista = require("./controllers/lojista");
+const Restaurante01 = new Lojista("Sabor 10", "0");
 
+Restaurante01.adicionarAoCardapio("X-Salada");
+console.log(Restaurante01.mostrarCardapio())
+
+const Prato = require("./components/prato");
 const xSalada = new Prato("X-Salada", 1);
 const xBacon = new Prato("X-Bacon", 1);
 
+const Cliente = require("./controllers/cliente");
+const Roberto = new Cliente("Roberto", "12345678901", "Rua 1 - Número 2");
 
-// console.log(xSalada);
-// console.log(xBacon);
+// console.log(Roberto)
 
-
-const cart = new Carrinho([]);
-
-console.log(cart)
-cart.adicionarPrato("aaa") //teste de erro
-cart.adicionarPrato(xBacon)
-cart.adicionarPrato(xBacon)
-cart.adicionarPrato(xBacon)
-cart.adicionarPrato(xSalada)
-console.log(cart.exibirPratos())
-cart.removerPrato(xBacon)
-cart.removerPrato("aaa")//teste de erro
-console.log(cart.exibirPratos())
-cart.adicionarPrato(xBacon)
-cart.adicionarPrato(xSalada)
-cart.alterarQuantidade(xSalada, 4)
-console.log(cart.exibirPratos())
-cart.alterarQuantidade(xSalada, -3)//teste de erro
-console.log(cart.exibirPratos())
+// Roberto.adicionarAoCarrinho("aaa") //teste de erro
+// Roberto.adicionarAoCarrinho(xBacon)
+// Roberto.adicionarAoCarrinho(xBacon)
+// Roberto.adicionarAoCarrinho(xBacon)
+// Roberto.adicionarAoCarrinho(xSalada)
+// console.log(Roberto.exibirCarrinho())
+// Roberto.removerDoCarrinho(xBacon)
+// Roberto.removerDoCarrinho("aaa")//teste de erro
+// console.log(Roberto.exibirCarrinho())
+// Roberto.adicionarAoCarrinho(xBacon)
+// Roberto.adicionarAoCarrinho(xSalada)
+// Roberto.alterarQuantidadeItem(xSalada, 4)
+// console.log(Roberto.exibirCarrinho())
+// Roberto.alterarQuantidadeItem(xSalada, -3)//teste de erro
+// console.log(Roberto.exibirCarrinho())
