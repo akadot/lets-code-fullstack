@@ -19,6 +19,7 @@ class Cliente {
 				let index = this.carrinho.indexOf(item)
 				this.carrinho[index].quantidade++;
 			} else {
+				console.log(`${item.quantidade} ${item.nome} adicionado ao carrinho.`);
 				this.carrinho.push(item);
 			}
 		} else {
@@ -31,6 +32,7 @@ class Cliente {
 		if (this.carrinho.includes(item)) {
 			let index = this.carrinho.indexOf(item);
 			this.carrinho.splice(index, 1);
+			console.log(`${item.quantidade} ${item.nome} removido do carrinho.`);
 		} else {
 			console.log("Erro ao deletar, item não encontrado.")
 			return "Erro ao deletar, item não encontrado."
@@ -41,9 +43,11 @@ class Cliente {
 		if (this.carrinho.includes(item)) {
 			let index = this.carrinho.indexOf(item);
 			if (quantidadeNova > 0) {
+				console.log(`Quantidade de ${item.nome} alterada de ${item.quantidade} para ${quantidadeNova}.`);
 				this.carrinho[index].quantidade = quantidadeNova;
 				return;
 			} else if (quantidadeNova == 0) {
+				console.log(`${item.nome} removido do carrinho.`);
 				this.carrinho.splice(index, 1);
 				return;
 			} else if (quantidadeNova < 0) {
@@ -52,7 +56,6 @@ class Cliente {
 			}
 		}
 	}
-
 
 	exibirCarrinho() {
 		return this.carrinho;

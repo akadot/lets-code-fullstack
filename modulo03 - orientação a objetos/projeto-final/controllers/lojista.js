@@ -1,4 +1,3 @@
-
 class Lojista {
 	#cnpj;
 
@@ -20,7 +19,6 @@ class Lojista {
 			console.log("Erro ao adicionar, item inválido.");
 			return "Erro ao adicionar, item inválido.";
 		}
-
 	}
 
 	removerDoCardapio(item) {

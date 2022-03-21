@@ -11,20 +11,9 @@ const xBacon = new Prato("X-Bacon", 1);
 const Cliente = require("./controllers/cliente");
 const Roberto = new Cliente("Roberto", "12345678901", "Rua 1 - Número 2");
 
-// console.log(Roberto)
+Roberto.adicionarAoCarrinho(xSalada);
+Roberto.adicionarAoCarrinho(xBacon);
+Roberto.removerDoCarrinho(xBacon);
+Roberto.alterarQuantidadeItem(xSalada, 4);
+Roberto.alterarQuantidadeItem(xSalada, 0);
 
-// Roberto.adicionarAoCarrinho("aaa") //teste de erro
-// Roberto.adicionarAoCarrinho(xBacon)
-// Roberto.adicionarAoCarrinho(xBacon)
-// Roberto.adicionarAoCarrinho(xBacon)
-// Roberto.adicionarAoCarrinho(xSalada)
-// console.log(Roberto.exibirCarrinho())
-// Roberto.removerDoCarrinho(xBacon)
-// Roberto.removerDoCarrinho("aaa")//teste de erro
-// console.log(Roberto.exibirCarrinho())
-// Roberto.adicionarAoCarrinho(xBacon)
-// Roberto.adicionarAoCarrinho(xSalada)
-// Roberto.alterarQuantidadeItem(xSalada, 4)
-// console.log(Roberto.exibirCarrinho())
-// Roberto.alterarQuantidadeItem(xSalada, -3)//teste de erro
-// console.log(Roberto.exibirCarrinho())
