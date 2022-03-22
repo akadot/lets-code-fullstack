@@ -14,6 +14,9 @@ const Roberto = new Cliente("Roberto", "12345678901", "Rua 1 - Número 2");
 Roberto.adicionarAoCarrinho(xSalada);
 Roberto.adicionarAoCarrinho(xBacon);
 Roberto.removerDoCarrinho(xBacon);
+Roberto.exibirCarrinho();
 Roberto.alterarQuantidadeItem(xSalada, 4);
 Roberto.alterarQuantidadeItem(xSalada, 0);
-
+Roberto.adicionarAoCarrinho(xSalada);
+Roberto.adicionarAoCarrinho(xBacon);
+Roberto.exibirCarrinho();

@@ -58,6 +58,10 @@ class Cliente {
 	}
 
 	exibirCarrinho() {
+		console.log("Itens do Carrinho:");
+		this.carrinho.map(item => {
+			console.log(`-> (${item.quantidade}x) ${item.nome}`);
+		})
 		return this.carrinho;
 	}
 }
