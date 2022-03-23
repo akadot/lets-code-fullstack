@@ -1,6 +1,7 @@
 class Pedido {
-	constructor(id, cliente, lojista, detalhes) {
-		this.id = id;
+	static contador = 0;
+	constructor(cliente, lojista, detalhes) {
+		this.id = ++Pedido.contador;
 		this.cliente = cliente;
 		this.lojista = lojista;
 		this.detalhes = detalhes; //obj

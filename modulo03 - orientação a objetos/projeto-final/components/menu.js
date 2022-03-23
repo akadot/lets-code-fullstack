@@ -2,6 +2,7 @@ const readline = require('readline-sync');
 const UserInterface = require("./userInterface");
 const ItemCarrinho = require("./itemCarrinho");
 const ItemCardapio = require('./itemCardapio');
+const Pedido = require("./pedido");
 
 class Menu extends UserInterface {
     constructor(cliente, lojista, entregador) {
@@ -19,7 +20,7 @@ class Menu extends UserInterface {
                     optionAction: () => this.#loadCliente()
                 },
                 {
-                    optionText: "Logista",
+                    optionText: "Lojista",
                     optionAction: () => this.#loadLojista()
                 },
                 {
@@ -98,9 +99,17 @@ class Menu extends UserInterface {
                         }
                     },
                     {
-                        optionText: "Fazer pedido",
+                        optionText: "Finalizar pedido",
                         optionAction: () => {
-                            console.log("não implementado...");
+                            const pedidoFinalizado = new Pedido(this._cliente.nome, this._lojista.nome, this._cliente.carrinho);
+                            console.log(`Pedido número ${pedidoFinalizado.id}:`);
+                            console.log(`Cliente: ${pedidoFinalizado.cliente}`);
+                            console.log(`Lojista: ${pedidoFinalizado.lojista}`);
+                            console.log('Detalhes do Pedido:');
+                            pedidoFinalizado.detalhes.map(item => {
+                                console.log(`-> (${item.quantidade}x) ${item.nome}`)
+                            });
+                            this._cliente.finalizarPedido(pedidoFinalizado);
                             readline.question("pressione ENTER para continuar...");
                         }
                     },
