@@ -2,6 +2,7 @@ const readline = require('readline-sync');
 const UserInterface = require("./userInterface");
 const ItemCarrinho = require("./itemCarrinho");
 const ItemCardapio = require('./itemCardapio');
+const Pedido = require('./pedido');
 
 class Menu extends UserInterface {
     constructor(cliente, lojista, entregador) {
@@ -100,8 +101,11 @@ class Menu extends UserInterface {
                     {
                         optionText: "Fazer pedido",
                         optionAction: () => {
-                            console.log("não implementado...");
-                            readline.question("pressione ENTER para continuar...");
+                            const detalhes = {
+                                detalhes: "detalhes",
+                            }
+                            const pedido = new Pedido(this._cliente, this._lojista, detalhes);
+                            this._lojista.adicionarAosPedidos(pedido);
                         }
                     },
                     {
@@ -195,8 +199,37 @@ class Menu extends UserInterface {
         );
     }
     #loadEntregador() {
-        console.log("ainda não implementado");
-        readline.question("pressione ENTER para continuar...");
+        return this.showOptions({
+            title: `Logado como entregador: ${this._entregador.nome}`,
+            extraUi: () => {
+                console.log("\n****** Pedidos prontos para entrega");
+                this._lojista.mostrarPedidos();
+                this._entregador.mostrarEntregas();
+                console.log("******\n");
+            },
+            question: "O que deseja fazer?",
+            options: [
+                {
+                    optionText: "Pegar pedido",
+                    optionAction: () => {
+                        console.log("Marcando pedido...");
+                        let pedido = readline.question("Escreva o id do pedido:\n> ");
+                        const item = this._lojista.pedidos.find(i => i.id === Number(pedido));
+                        if (item) {
+                            this._entregador.marcarPedido(item);
+                        }
+                        else {
+                            console.log("Pedido não existe na lista.");
+                            readline.question("pressione ENTER para continuar...");
+                        }
+                    },
+                },                
+                {
+                    optionText: "Voltar",
+                    optionAction: () => false
+                }                
+            ]            
+        });
     }
 }
 

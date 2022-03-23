@@ -1,4 +1,6 @@
 const ItemCardapio = require("../components/itemCardapio");
+const Pedido = require("../components/pedido")
+
 class Lojista {
 	#cnpj;
 
@@ -6,6 +8,7 @@ class Lojista {
 		this.nome = nome;
 		this.#cnpj = cnpj;
 		this.cardapio = [];
+		this.pedidos = [];
 	}
 
 
@@ -16,6 +19,13 @@ class Lojista {
 			console.log("Erro ao adicionar item.")
 		}
 	}
+	adicionarAosPedidos(item) {
+		if (item instanceof Pedido) {
+			this.pedidos.push(item);
+		} else {
+			console.log("Erro ao adicionar pedido.")
+		}
+	}	
 
 	removerDoCardapio(item) {
 		const existeNoCardapio = this.cardapio.find(i => i.nome === item.nome);
@@ -44,6 +54,14 @@ class Lojista {
 			console.log(`[${item.codigo}]    | ${item.nome}`);
 		})
 	}
+
+	mostrarPedidos() {
+		this.pedidos.map(item => {
+			console.log(`-----\npedido id: ${item.id}\ncliente: ${item.cliente.nome}\nrestaurante: ${item.lojista.nome}\n`);
+			item.cliente.exibirCarrinho();
+			console.log("\n-----");
+		})
+	}	
 }
 
 module.exports = Lojista;
