@@ -20,3 +20,10 @@ Roberto.alterarQuantidadeItem(xSalada, 0);
 Roberto.adicionarAoCarrinho(xSalada);
 Roberto.adicionarAoCarrinho(xBacon);
 Roberto.exibirCarrinho();
+
+/**
+ * Classe Carrinho com toda a lógica do carrinho, com funções estáticas
+ * Classe Pedido com informações do restaurante, do cliente e do pedido
+ * Usar as funções estáticas das duas classes para compor a classe Cliente
+ * 
+ */
