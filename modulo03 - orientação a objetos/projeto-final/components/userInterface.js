@@ -2,11 +2,11 @@ const readline = require('readline-sync');
 
 class UserInterface {
     _cliente
-    _logista
+    _lojista
     _entregador
-    constructor(cliente, logista, entregador){
+    constructor(cliente, lojista, entregador) {
         this._cliente = cliente;
-        this._logista = logista;
+        this._lojista = lojista;
         this._entregador = entregador;
     }
 
@@ -16,7 +16,7 @@ class UserInterface {
 
     showOptions(obj) {
         let loop = true;
-        while(loop){
+        while (loop) {
             console.clear();
             console.log("****** AppFood Pedidos ******");
             console.log(`****** ${obj.title} ******`);
@@ -25,7 +25,7 @@ class UserInterface {
                 : console.log("");
 
             let choices = "";
-            for(let i = 0; i < obj.options.length; i++) {
+            for (let i = 0; i < obj.options.length; i++) {
                 choices = choices + `[${i + 1}] ${obj.options[i].optionText}\n`;
             }
             let resp = readline.question(`${obj.question}\n` + choices + "> ");
@@ -39,8 +39,8 @@ class UserInterface {
     get _cliente() {
         return this._cliente;
     }
-    get _logista() {
-        return this._logista;
+    get _lojista() {
+        return this._lojista;
     }
     get _entregador() {
         return this.entregador;
