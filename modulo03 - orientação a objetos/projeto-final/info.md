@@ -1,3 +1,10 @@
+# Set up inicial
+
+Esse projeto depende do módulo [readline-sync](https://www.npmjs.com/package/readline-sync) para funcionar. Portanto, antes de rodar, você precisaŕa usar o comando:
+```
+$ npm install
+```
+
 # Projeto prático (POO)
 
 Vamos implementar a modelagem de um sistema de delivery de refeições. Para tal, será necessário criar as classes que representam cada uma das entidades envolvidas no processo.
