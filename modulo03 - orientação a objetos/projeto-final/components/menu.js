@@ -101,16 +101,18 @@ class Menu extends UserInterface {
                     {
                         optionText: "Finalizar pedido",
                         optionAction: () => {
-                            const pedidoFinalizado = new Pedido(this._cliente.nome, this._lojista.nome, this._cliente.carrinho);
+                            const pedidoFinalizado = new Pedido(this._cliente, this._lojista, this._cliente.carrinho);
                             console.log(`Pedido número ${pedidoFinalizado.id}:`);
-                            console.log(`Cliente: ${pedidoFinalizado.cliente}`);
-                            console.log(`Lojista: ${pedidoFinalizado.lojista}`);
+                            console.log(`Cliente: ${pedidoFinalizado.cliente.nome} \nEndereço: ${pedidoFinalizado.cliente.endereco}`);
+                            console.log(`Lojista: ${pedidoFinalizado.lojista.nome}`);
                             console.log('Detalhes do Pedido:');
                             pedidoFinalizado.detalhes.map(item => {
                                 console.log(`-> (${item.quantidade}x) ${item.nome}`)
                             });
                             this._cliente.finalizarPedido(pedidoFinalizado);
+                            this._cliente.carrinho = [];
                             readline.question("pressione ENTER para continuar...");
+                            return false;
                         }
                     },
                     {

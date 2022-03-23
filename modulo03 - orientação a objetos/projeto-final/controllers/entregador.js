@@ -1,17 +1,20 @@
 class Entregador {
 	#cpf;
-
+	#pedidosFinalizados
 	static contador = 0;
 
 	constructor(nome, cpf) {
 		this.id = ++Entregador.contador;
 		this.nome = nome;
 		this.#cpf = cpf;
+		this.#pedidosFinalizados = [];
 	}
-
-	verPedidos() { }
 
 	escolherPedido() { }
 
-	entregarPedido() { }
+	entregarPedido(pedido) {
+
+	}
 }
+
+module.exports = Entregador;

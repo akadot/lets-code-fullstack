@@ -4,7 +4,7 @@ class Pedido {
 		this.id = ++Pedido.contador;
 		this.cliente = cliente;
 		this.lojista = lojista;
-		this.detalhes = detalhes; //obj
+		this.detalhes = detalhes;
 	}
 }
 

@@ -2,15 +2,16 @@ const ItemCarrinho = require("../components/itemCarrinho")
 
 class Cliente {
 	#cpf;
-	#endereco;
+	#pedidos;
 	static contador = 0;
 
 	constructor(nome, cpf, endereco) {
 		this.id = ++Cliente.contador;
 		this.nome = nome;
 		this.#cpf = cpf;
-		this.#endereco = endereco;
+		this.endereco = endereco;
 		this.carrinho = [];
+		this.#pedidos = [];
 	}
 
 	adicionarAoCarrinho(item) {
@@ -61,6 +62,10 @@ class Cliente {
 			console.log(`-> (${item.quantidade}x) ${item.nome}`);
 		})
 		return this.carrinho;
+	}
+
+	finalizarPedido(pedido) {
+		this.#pedidos.push(pedido)
 	}
 }
 
