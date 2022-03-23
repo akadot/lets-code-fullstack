@@ -2,7 +2,7 @@ const readline = require('readline-sync');
 const UserInterface = require("./userInterface");
 const ItemCarrinho = require("./itemCarrinho");
 const ItemCardapio = require('./itemCardapio');
-const Pedido = require('./pedido');
+const Pedido = require("./pedido");
 
 class Menu extends UserInterface {
     constructor(cliente, lojista, entregador) {
@@ -20,7 +20,7 @@ class Menu extends UserInterface {
                     optionAction: () => this.#loadCliente()
                 },
                 {
-                    optionText: "Logista",
+                    optionText: "Lojista",
                     optionAction: () => this.#loadLojista()
                 },
                 {
@@ -99,7 +99,7 @@ class Menu extends UserInterface {
                         }
                     },
                     {
-                        optionText: "Fazer pedido",
+                        optionText: "Finalizar pedido",
                         optionAction: () => {
                             const detalhes = {
                                 detalhes: "detalhes",
