@@ -1,3 +1,4 @@
+const ItemCardapio = require("../components/itemCardapio");
 class Lojista {
 	#cnpj;
 
@@ -9,30 +10,39 @@ class Lojista {
 
 
 	adicionarAoCardapio(item) {
-		if (typeof item == "string") {
-			if (this.cardapio.includes(item)) {
-				console.log("Erro ao adicionar, item já existe no cardapio.");
-				return "Erro ao adicionar, item já existe no cardapio.";
-			}
+		if (item instanceof ItemCardapio) {
 			this.cardapio.push(item);
 		} else {
-			console.log("Erro ao adicionar, item inválido.");
-			return "Erro ao adicionar, item inválido.";
+			console.log("Erro ao adicionar item.")
 		}
 	}
 
 	removerDoCardapio(item) {
-		if (this.cardapio.includes(item)) {
-			let index = this.cardapio.indexOf(item);
+		const existeNoCardapio = this.cardapio.find(i => i.nome === item.nome);
+		if (existeNoCardapio) {
+			let index = this.cardapio.indexOf(existeNoCardapio);
 			this.cardapio.splice(index, 1);
 		} else {
 			console.log("Erro ao excluir, item não encontrado no cardapio.");
-			return "Erro ao excluir, item não encontrado no cardapio.";
+		}
+	}
+
+	editarDoCardapio(itemAntigo, itemNovo) {
+		if (itemNovo instanceof ItemCardapio) {
+			let existeNoCardapio = this.cardapio.find(i => i.nome === itemAntigo);
+			if (existeNoCardapio) {
+				let index = this.cardapio.indexOf(existeNoCardapio);
+				this.cardapio[index] = itemNovo;
+			}
+		} else {
+			console.log("Erro ao editar, item não encontrado no cardapio.");
 		}
 	}
 
 	mostrarCardapio() {
-		return this.cardapio;
+		this.cardapio.map(item => {
+			console.log(`[${item.codigo}]    | ${item.nome}`);
+		})
 	}
 }
 

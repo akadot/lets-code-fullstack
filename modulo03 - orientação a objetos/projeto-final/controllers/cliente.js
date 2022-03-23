@@ -1,4 +1,4 @@
-const Prato = require("../components/prato")
+const ItemCarrinho = require("../components/itemCarrinho")
 
 class Cliente {
 	#cpf;
@@ -14,9 +14,10 @@ class Cliente {
 	}
 
 	adicionarAoCarrinho(item) {
-		if (item instanceof Prato) {
-			if (this.carrinho.includes(item)) {
-				let index = this.carrinho.indexOf(item)
+		if (item instanceof ItemCarrinho) {
+			const existeNoCarrinho = this.carrinho.find(i => i.nome === item.nome);
+			if (existeNoCarrinho) {
+				let index = this.carrinho.indexOf(existeNoCarrinho)
 				this.carrinho[index].quantidade++;
 			} else {
 				console.log(`${item.quantidade} ${item.nome} adicionado ao carrinho.`);
@@ -24,7 +25,6 @@ class Cliente {
 			}
 		} else {
 			console.log("Erro ao adicionar item.")
-			return "Erro ao adicionar item."
 		}
 	}
 
@@ -35,7 +35,6 @@ class Cliente {
 			console.log(`${item.quantidade} ${item.nome} removido do carrinho.`);
 		} else {
 			console.log("Erro ao deletar, item não encontrado.")
-			return "Erro ao deletar, item não encontrado."
 		}
 	}
 
@@ -52,7 +51,6 @@ class Cliente {
 				return;
 			} else if (quantidadeNova < 0) {
 				console.log("Erro ao alterar, quantidade inválida")
-				return "Erro ao alterar, quantidade inválida"
 			}
 		}
 	}
