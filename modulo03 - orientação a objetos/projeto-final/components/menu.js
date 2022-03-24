@@ -101,15 +101,17 @@ class Menu extends UserInterface {
                     {
                         optionText: "Finalizar pedido",
                         optionAction: () => {
-                            const pedidoFinalizado = new Pedido(this._cliente, this._lojista, this._cliente.carrinho);
+                            const pedidoFinalizado = new Pedido(this._cliente, this._lojista, this._cliente.carrinho, "Pendente");
                             console.log(`Pedido número ${pedidoFinalizado.id}:`);
                             console.log(`Cliente: ${pedidoFinalizado.cliente.nome} \nEndereço: ${pedidoFinalizado.cliente.endereco}`);
                             console.log(`Lojista: ${pedidoFinalizado.lojista.nome}`);
                             console.log('Detalhes do Pedido:');
                             pedidoFinalizado.detalhes.map(item => {
-                                console.log(`-> (${item.quantidade}x) ${item.nome}`)
+                                console.log(`-> (${item.quantidade}x) ${item.nome}\n`)
                             });
+                            console.log(`Situação: ${pedidoFinalizado.estado}`)
                             this._cliente.finalizarPedido(pedidoFinalizado);
+                            this._lojista.adicionarAosPedidos(pedidoFinalizado);
                             this._cliente.carrinho = [];
                             readline.question("pressione ENTER para continuar...");
                             return false;
@@ -206,8 +208,56 @@ class Menu extends UserInterface {
         );
     }
     #loadEntregador() {
-        console.log("ainda não implementado");
-        readline.question("pressione ENTER para continuar...");
+        return this.showOptions({
+            title: `Logado como entregador: ${this._entregador.nome}`,
+            extraUi: () => {
+                console.log("\n****** Pedidos prontos para entrega");
+                this._lojista.mostrarPedidos();
+                this._entregador.mostrarEntregas();
+                console.log("******\n");
+            },
+            question: "O que deseja fazer?",
+            options: [
+                {
+                    optionText: "Pegar pedido",
+                    optionAction: () => {
+                        console.log("Marcando pedido...");
+                        let pedido = readline.question("Escreva o id do pedido:\n> ");
+                        const item = this._lojista.pedidos.find(i => i.id === Number(pedido));
+                        if (item) {
+                            item.estado = "Em Curso"
+                            console.log(`Pedido de ID: ${pedido} aceito.`)
+                            this._entregador.marcarPedido(item);
+                        }
+                        else {
+                            console.log("Pedido não existe na lista.");
+                            readline.question("pressione ENTER para continuar...");
+                        }
+                    },
+                },
+                {
+                    optionText: "Entregar pedido",
+                    optionAction: () => {
+                        console.log("Entregando pedido...");
+                        let pedido = readline.question("Escreva o id do pedido entregue:\n> ");
+                        const item = this._entregador.pedidosEmCurso.find(i => i.id === Number(pedido));
+                        if (item) {
+                            item.estado = "Entregue"
+                            console.log(`Pedido de ID: ${pedido} entregue.`)
+                            this._entregador.entregarPedido(item);
+                        }
+                        else {
+                            console.log("Pedido não existe na lista.");
+                            readline.question("pressione ENTER para continuar...");
+                        }
+                    },
+                },
+                {
+                    optionText: "Voltar",
+                    optionAction: () => false
+                }
+            ]
+        });
     }
 }
 

@@ -1,4 +1,5 @@
 const ItemCardapio = require("../components/itemCardapio");
+const Pedido = require("../components/pedido");
 class Lojista {
 	#cnpj;
 
@@ -6,6 +7,7 @@ class Lojista {
 		this.nome = nome;
 		this.#cnpj = cnpj;
 		this.cardapio = [];
+		this.pedidos = [];
 	}
 
 
@@ -42,6 +44,26 @@ class Lojista {
 	mostrarCardapio() {
 		this.cardapio.map(item => {
 			console.log(`[${item.codigo}]    | ${item.nome}`);
+		})
+	}
+
+	adicionarAosPedidos(item) {
+		if (item instanceof Pedido) {
+			this.pedidos.push(item);
+		} else {
+			console.log("Erro ao adicionar pedido.")
+		}
+	}
+
+	mostrarPedidos() {
+		this.pedidos.map(item => {
+			console.log(`-----\nID do Pedido: ${item.id}\nNomde do Cliente: ${item.cliente.nome}\nLojista: ${item.lojista.nome}\nSituação: ${item.estado}\nDetalhes:\n`);
+
+			item.detalhes.map(prato => {
+				console.log(`-> (${prato.quantidade}x) ${prato.nome}`)
+			})
+
+			console.log("\n-----");
 		})
 	}
 }
