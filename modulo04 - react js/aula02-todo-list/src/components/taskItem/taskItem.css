@@ -1,0 +1,46 @@
+li {
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	list-style: none;
+	padding: 3px 3px 3px 10px;
+	margin-bottom: 8px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+li span {
+	width: 80%;
+	word-wrap: break-word;
+	line-break: normal;
+}
+
+button.btn-check,
+button.btn-delete {
+	font-size: 1em;
+	font-weight: 600;
+	padding: 5px;
+	width: 35px;
+	text-align: center;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+}
+
+button.btn-check {
+	background-color: #43dfb2;
+}
+
+button.btn-check:hover {
+	background-color: #00A878;
+}
+
+button.btn-delete {
+	background-color: #FF5964;
+}
+
+button.btn-delete:hover {
+	background-color: #FF3864;
+}

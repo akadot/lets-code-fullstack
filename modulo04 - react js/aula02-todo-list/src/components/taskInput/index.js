@@ -1,3 +1,5 @@
+import './taskInput.css';
+
 import { useState } from 'react'
 function TaskInput({ adicionar }) {
 	const [task, setTask] = useState([]);
@@ -11,10 +13,10 @@ function TaskInput({ adicionar }) {
 	}
 
 	return (
-		<>
-			<input type="text" value={task} onChange={handleOnChange} />
-			<button onClick={handleOnClick}>Adicionar Tarefa</button>
-		</>
+		<section className='input-container'>
+			<input type="text" value={task} onChange={handleOnChange} placeholder="✍ Escreva uma tarefa..." />
+			<button className="btn-add" onClick={handleOnClick}>+</button>
+		</section>
 	)
 }
 

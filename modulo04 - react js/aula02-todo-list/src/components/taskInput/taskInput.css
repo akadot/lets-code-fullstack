@@ -1,0 +1,33 @@
+.input-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+input {
+	padding: 5px;
+	width: 90%;
+	font-size: 1em;
+	border: 1px solid #ddd;
+	border-right: none;
+	border-radius: 5px 0px 0px 5px;
+
+}
+
+button.btn-add {
+	padding: 5px 10px;
+	font-size: 1em;
+	font-weight: 600;
+	border: 1px solid #ffaf4b;
+	border-left: none;
+	border-radius: 0px 5px 5px 0px;
+	color: white;
+	background: #ffaf4b;
+
+	cursor: pointer;
+}
+
+button.btn-add:hover {
+	background-color: #ff920b;
+}
