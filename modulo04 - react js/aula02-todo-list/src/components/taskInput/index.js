@@ -9,8 +9,8 @@ function TaskInput({ add }) {
 	}
 
 	const handleOnClick = () => {
-		setTaskInput("")
 		add(taskIput)
+		setTaskInput("")
 	}
 
 	return (

@@ -8,13 +8,15 @@ import './styles/app.css'
 export default function Todo() {
   const [task, setTask] = useState([]);
 
-  const addTask = newTask => {
-    const addedTask = { description: newTask, completed: false }
-    setTask([...task, addedTask]);
+  const addTask = (newTask) => {
+    if (newTask !== "") {
+      const addedTask = { description: newTask, completed: false }
+      setTask([...task, addedTask]);
+    }
   }
 
   const deleteTask = (selectedTask) => {
-    const newTasks = task.filter((item, index) => index !== selectedTask);
+    const newTasks = task.filter((_, index) => index !== selectedTask);
     setTask(newTasks);
   }
 
@@ -28,9 +30,7 @@ export default function Todo() {
       }
       return task;
     });
-
     setTask(newTasks);
-    console.log(task)
   }
 
   return (
