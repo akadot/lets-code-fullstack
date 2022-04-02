@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# React Todo List
+
+<img src="./public/example.png" width="400px"/>
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

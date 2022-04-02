@@ -9,18 +9,39 @@ export default function Todo() {
   const [task, setTask] = useState([]);
 
   const addTask = newTask => {
-    setTask([...task, newTask]);
+    const addedTask = { description: newTask, completed: false }
+    setTask([...task, addedTask]);
+  }
+
+  const deleteTask = (selectedTask) => {
+    const newTasks = task.filter((item, index) => index !== selectedTask);
+    setTask(newTasks);
+  }
+
+  const completeTask = (selectedTask) => {
+    const newTasks = task.map((task, index) => {
+      if (index === selectedTask) {
+        return {
+          description: task.description,
+          completed: !task.completed
+        }
+      }
+      return task;
+    });
+
+    setTask(newTasks);
+    console.log(task)
   }
 
   return (
     <section className="app">
       <p>📝</p>
       <h1>Todo List</h1>
-      <TaskInput adicionar={addTask} />
+      <TaskInput add={addTask} />
       <ul>
         {
-          task.map(item => (
-            <TaskItem descricao={item} />
+          task.map((item, index) => (
+            <TaskItem task={item} taskIndex={index} deleteTask={deleteTask} completeTask={completeTask} key={index} />
           ))
         }
       </ul>

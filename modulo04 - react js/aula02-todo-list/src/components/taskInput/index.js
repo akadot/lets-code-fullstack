@@ -1,20 +1,21 @@
 import './taskInput.css';
 
 import { useState } from 'react'
-function TaskInput({ adicionar }) {
-	const [task, setTask] = useState([]);
+function TaskInput({ add }) {
+	const [taskIput, setTaskInput] = useState([]);
 
 	const handleOnChange = (e) => {
-		setTask(e.target.value);
+		setTaskInput(e.target.value);
 	}
+
 	const handleOnClick = () => {
-		adicionar(task)
-		setTask("")
+		setTaskInput("")
+		add(taskIput)
 	}
 
 	return (
 		<section className='input-container'>
-			<input type="text" value={task} onChange={handleOnChange} placeholder="✍ Escreva uma tarefa..." />
+			<input type="text" value={taskIput} onChange={handleOnChange} placeholder="✍ Escreva uma tarefa..." />
 			<button className="btn-add" onClick={handleOnClick}>+</button>
 		</section>
 	)
