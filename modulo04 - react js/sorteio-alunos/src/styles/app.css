@@ -1,0 +1,113 @@
+.container {
+	padding: 20px;
+	border-radius: 5px;
+	height: max-content;
+	width: max-content;
+	/* background-color: #fff; */
+}
+
+header {
+	text-align: center;
+}
+
+header h1 {
+	font-size: 2em;
+	color: #fc0041;
+}
+
+header p {
+	color: #cfcfcf;
+}
+
+main {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.students-list,
+.students-drawn {
+	width: 500px;
+	height: 400px;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+.students-list {
+	background-color: #fff;
+	box-shadow: rgba(252, 0, 65, 0.4) -5px 5px, rgba(252, 0, 65, 0.3) -10px 10px, rgba(252, 0, 65, 0.2) -15px 15px, rgba(252, 0, 65, 0.1) -20px 20px, rgba(252, 0, 65, 0.05) -25px 25px;
+}
+
+.students-list input {
+	padding: 5px;
+	width: 65%;
+	margin-right: 5px;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	overflow: auto;
+}
+
+.students-list input:focus {
+	border-color: #fc0041;
+}
+
+.students-drawn {
+	position: relative;
+	background-color: #724df8;
+	color: #fff;
+	box-shadow: rgba(252, 0, 65, 0.4) 5px 5px, rgba(252, 0, 65, 0.3) 10px 10px, rgba(252, 0, 65, 0.2) 15px 15px, rgba(252, 0, 65, 0.1) 20px 20px, rgba(252, 0, 65, 0.05) 25px 25px;
+}
+
+.students-list p {
+	font-size: 1.3em;
+	font-weight: 600;
+	text-align: center;
+	margin-top: 30px;
+	color: #fc0041;
+}
+
+button {
+	font-weight: 600;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #fc0041;
+	border: 2px solid #fc0041;
+	color: #fff;
+	cursor: pointer;
+}
+
+.btn-clean {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	border: 2px solid #fc0041;
+	background-color: transparent;
+}
+
+ul {
+	margin: 10px 0;
+	width: 100%;
+}
+
+li {
+	list-style: none;
+	font-size: 1.3em;
+	font-weight: 600;
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+footer {
+	text-align: center;
+	color: #cfcfcf;
+	margin-top: 50px;
+}
+
+footer a {
+	color: #fc0041;
+}
