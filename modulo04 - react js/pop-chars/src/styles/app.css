@@ -1,0 +1,31 @@
+header {
+	text-align: center;
+	color: #323232;
+}
+
+header h1 {
+	font-size: 2em;
+	color: #323232;
+}
+
+header p {
+	color: #414141;
+}
+
+main {
+	margin: 20px 0;
+	background-color: #323232;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+main input {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
+}

@@ -1,0 +1,29 @@
+h2 {
+	color: #3cc47c;
+	margin: 10px 0;
+}
+
+img {
+	width: 350px;
+	height: 350px;
+	object-fit: cover;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.btn-forms {
+	margin: 10px 0;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.btn-forms button {
+	background-color: #3cc47c;
+	color: #323232;
+	border: 1px solid #3cc47c;
+	border-radius: 3px;
+	padding: 5px;
+	font-weight: 600;
+	cursor: pointer;
+}
