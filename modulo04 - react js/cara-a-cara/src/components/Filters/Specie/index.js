@@ -1,9 +1,19 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-function Specie({ checkChar }) {
+function Specie({ checkChar, reset }) {
 
 	const [history, setHistory] = useState([]);
-	const selectInput = useRef(null)
+	const selectInput = useRef(null);
+
+	useEffect(() => {
+		clearHist();
+	}, [reset]);
+
+	function clearHist() {
+		selectInput.current.removeAttribute("disabled");
+		selectInput.current.selectedIndex = 0;
+		setHistory([]);
+	}
 
 	function handleOnChange(event) {
 		const name = event.target.name;
@@ -22,8 +32,8 @@ function Specie({ checkChar }) {
 	return (
 		<section className="filter">
 			<label htmlFor="specie">Espécie</label>
-			<select name="specie" id="specie" onChange={event => handleOnChange(event)} ref={selectInput}>
-				<option selected disabled> -- Selecione -- </option>
+			<select defaultValue={"DEFAULT"} name="specie" id="specie" onChange={event => handleOnChange(event)} ref={selectInput}>
+				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
 				<option value="Humano">Humano</option>
 				<option value="Tritão">Tritão</option>
 				<option value="Mink">Mink</option>

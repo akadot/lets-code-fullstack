@@ -1,8 +1,18 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-function Weapon({ checkChar }) {
+function Weapon({ checkChar, reset }) {
 	const [history, setHistory] = useState([]);
 	const selectInput = useRef(null);
+
+	useEffect(() => {
+		clearHist();
+	}, [reset]);
+
+	function clearHist() {
+		selectInput.current.removeAttribute("disabled");
+		selectInput.current.selectedIndex = 0;
+		setHistory([]);
+	}
 
 	function handleOnChange(event) {
 		const name = event.target.name;
@@ -20,8 +30,8 @@ function Weapon({ checkChar }) {
 	return (
 		<section className="filter">
 			<label htmlFor="weapons">Usa Armas?</label>
-			<select name="weapons" id="weapons" onChange={event => handleOnChange(event)} ref={selectInput}>
-				<option selected disabled> -- Selecione -- </option>
+			<select defaultValue={"DEFAULT"} name="weapons" id="weapons" onChange={event => handleOnChange(event)} ref={selectInput}>
+				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
 				<option value="true">Sim</option>
 				<option value="false">Não</option>
 			</select>

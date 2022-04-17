@@ -1,8 +1,18 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-function HairColor({ checkChar }) {
+function HairColor({ checkChar, reset }) {
 	const [history, setHistory] = useState([]);
-	const selectInput = useRef(null)
+	const selectInput = useRef(null);
+
+	useEffect(() => {
+		clearHist();
+	}, [reset]);
+
+	function clearHist() {
+		selectInput.current.removeAttribute("disabled");
+		selectInput.current.selectedIndex = 0;
+		setHistory([]);
+	}
 
 	function handleOnChange(event) {
 		const name = event.target.name;
@@ -21,8 +31,8 @@ function HairColor({ checkChar }) {
 	return (
 		<section className="filter">
 			<label htmlFor="hairColor">Cor do Cabelo</label>
-			<select name="hairColor" id="hairColor" onChange={event => handleOnChange(event)} ref={selectInput}>
-				<option selected disabled> -- Selecione -- </option>
+			<select defaultValue={"DEFAULT"} name="hairColor" id="hairColor" onChange={event => handleOnChange(event)} ref={selectInput}>
+				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
 				<option value="Preto">Preto</option>
 				<option value="Loiro">Loiro</option>
 				<option value="Ruivo">Ruivo</option>

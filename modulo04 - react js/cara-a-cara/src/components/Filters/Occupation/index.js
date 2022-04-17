@@ -1,8 +1,18 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-function Occupation({ checkChar }) {
+function Occupation({ checkChar, reset }) {
 	const [history, setHistory] = useState([]);
-	const selectInput = useRef(null)
+	const selectInput = useRef(null);
+
+	useEffect(() => {
+		clearHist();
+	}, [reset]);
+
+	function clearHist() {
+		selectInput.current.removeAttribute("disabled");
+		selectInput.current.selectedIndex = 0;
+		setHistory([]);
+	}
 
 	function handleOnChange(event) {
 		const name = event.target.name;
@@ -21,8 +31,8 @@ function Occupation({ checkChar }) {
 	return (
 		<section className="filter">
 			<label htmlFor="occupation">Ocupação</label>
-			<select name="occupation" id="occupation" onChange={event => handleOnChange(event)} ref={selectInput}>
-				<option selected disabled> -- Selecione -- </option>
+			<select defaultValue={"DEFAULT"} name="occupation" id="occupation" onChange={event => handleOnChange(event)} ref={selectInput}>
+				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
 				<option value="Pirata">Pirata</option>
 				<option value="Marinha">Marinha</option>
 				<option value="Revolucionário">Revolucionário</option>

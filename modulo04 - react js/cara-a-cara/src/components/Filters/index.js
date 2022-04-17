@@ -7,15 +7,15 @@ import Origin from "./Origin";
 
 import './style.css'
 
-function Filters({ checkChar }) {
+function Filters({ checkChar, reset }) {
 	return (
 		<section className="filters-container">
-			<HairColor checkChar={checkChar} />
-			<Occupation checkChar={checkChar} />
-			<Specie checkChar={checkChar} />
-			<Origin checkChar={checkChar} />
-			<AkumaNoMi checkChar={checkChar} />
-			<Weapon checkChar={checkChar} />
+			<HairColor checkChar={checkChar} reset={reset} />
+			<Occupation checkChar={checkChar} reset={reset} />
+			<Specie checkChar={checkChar} reset={reset} />
+			<Origin checkChar={checkChar} reset={reset} />
+			<AkumaNoMi checkChar={checkChar} reset={reset} />
+			<Weapon checkChar={checkChar} reset={reset} />
 		</section>
 	)
 }

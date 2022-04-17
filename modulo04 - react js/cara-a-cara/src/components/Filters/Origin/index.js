@@ -1,8 +1,18 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-function Origin({ checkChar }) {
+function Origin({ checkChar, reset }) {
 	const [history, setHistory] = useState([]);
-	const selectInput = useRef(null)
+	const selectInput = useRef(null);
+
+	useEffect(() => {
+		clearHist();
+	}, [reset]);
+
+	function clearHist() {
+		selectInput.current.removeAttribute("disabled");
+		selectInput.current.selectedIndex = 0;
+		setHistory([]);
+	}
 
 	function handleOnChange(event) {
 		const name = event.target.name;
@@ -22,8 +32,8 @@ function Origin({ checkChar }) {
 	return (
 		<section className="filter">
 			<label htmlFor="origin">Local de Origem</label>
-			<select name="origin" id="origin" onChange={event => handleOnChange(event)} ref={selectInput}>
-				<option selected disabled> -- Selecione -- </option>
+			<select defaultValue={"DEFAULT"} name="origin" id="origin" onChange={event => handleOnChange(event)} ref={selectInput}>
+				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
 				<option value="East Blue">East Blue</option>
 				<option value="West Blue">West Blue</option>
 				<option value="North Blue">North Blue</option>

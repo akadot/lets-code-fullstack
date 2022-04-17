@@ -1,22 +1,3 @@
-.container {
-	background-image: linear-gradient(#0000004b, #000000), url("../assets/img/bg.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	height: 100%;
-}
-
-ul {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: 20px;
-	padding: 10px;
-}
-
-
 footer {
 	margin-top: 30px;
 	padding: 30px;
