@@ -71,6 +71,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	height: 100%;
+	width: 200px;
 	color: #fff;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -90,4 +91,20 @@
 
 .res-info #yourChoice {
 	align-self: flex-end;
+}
+
+.res-info span {
+	text-align: center;
+	margin-top: 20px;
+	font-weight: 600;
+	color: #FF3131;
+}
+
+.res-info h4 {
+	text-align: center;
+	margin-top: 10px;
+	font-size: 1.3em;
+	align-self: center;
+	font-weight: 800;
+	color: #1b7bc9;
 }

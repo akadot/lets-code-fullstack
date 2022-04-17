@@ -11,7 +11,7 @@ import './style.css';
 function Game() {
 	const [selected, setSelected] = useState({});
 	const [database, setDatabase] = useState(Data);
-	const [score, setScore] = useState(100);
+	const [score, setScore] = useState(25);
 	const [reset, setReset] = useState(false)
 	const filtersChild = useRef(null);
 
@@ -23,12 +23,11 @@ function Game() {
 		if (selected[itemName] === itemValue) {
 			const newDatabase = database.filter(item => item[itemName] === itemValue);
 			setDatabase(newDatabase)
-			setScore(score + 10);
 			return true;
 		} else {
 			const newDatabase = database.filter(item => item[itemName] !== itemValue);
 			setDatabase(newDatabase);
-			setScore(score - 10);
+			setScore(score - 1);
 			return false;
 		}
 	}
@@ -42,7 +41,7 @@ function Game() {
 		setDatabase(Data);
 		const selectedChar = database[Math.floor(Math.random() * database.length)];
 		setSelected(selectedChar);
-		setScore(100);
+		setScore(25);
 		console.log(selectedChar);
 	}
 
@@ -51,13 +50,15 @@ function Game() {
 			return {
 				player: char,
 				machine: selected,
-				win: true
+				win: true,
+				score: score,
 			}
 		} else {
 			return {
 				player: char,
 				machine: selected,
-				win: false
+				win: false,
+				score: score,
 			}
 		}
 	}

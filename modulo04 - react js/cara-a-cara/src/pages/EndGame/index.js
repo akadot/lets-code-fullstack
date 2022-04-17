@@ -7,11 +7,13 @@ import './style.css';
 
 function EndGame() {
 	const location = useLocation();
-	const { machine, player, win } = location.state;
+	const { machine, player, win, score } = location.state;
 
 	const color = win ? "#0FFF50" : "#FF3131";
 
-	const imgRes = win ? winImg : looseImg
+	const imgRes = win ? winImg : looseImg;
+
+	const finalScore = 1000000 * (score / 25)
 
 	return (
 		<section className='end-container'>
@@ -27,6 +29,8 @@ function EndGame() {
 					<p id='myChoice'>←Sua escolha</p>
 					<img src={imgRes} alt="result" />
 					<p id='yourChoice'>Minha escolha→</p>
+					<span>Tentativas Falhas: {25 - score}</span>
+					<h4>Sua decompensa é de {win ? finalScore : 0} berries.</h4>
 				</section>
 				<section className='poster'>
 					<h1>WANTED</h1>
