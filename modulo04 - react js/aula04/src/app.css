@@ -1,0 +1,19 @@
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.token input {
+	font-size: 1.5em;
+	padding: 20px 5px;
+	max-width: 30px;
+	text-align: center;
+	margin: 0 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}

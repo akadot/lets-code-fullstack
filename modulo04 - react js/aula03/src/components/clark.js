@@ -16,7 +16,7 @@ export default function Poke() {
 	return (
 		<>
 			<h1>{clark}</h1>
-			<input type="text" onChange={e => setName(e.target.value)} value={name} placeholder="Nome" />
+			<input type="text" onChange={e => setName(e.target.value)} value={name} placeholder="Qual o nome do Super Homem?" />
 		</>
 	)
 }
