@@ -22,7 +22,7 @@
 	border-radius: 10px 0 10px 0;
 }
 
-p {
+.img-container p {
 	position: absolute;
 	bottom: -1px;
 	left: 0;
@@ -30,4 +30,8 @@ p {
 	border-radius: 0px 10px 0px 0px;
 	font-weight: 600;
 	font-size: .8em;
+}
+
+a {
+	color: #fff;
 }

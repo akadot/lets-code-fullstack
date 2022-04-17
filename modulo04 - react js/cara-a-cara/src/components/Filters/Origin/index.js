@@ -31,15 +31,15 @@ function Origin({ checkChar, reset }) {
 
 	return (
 		<section className="filter">
-			<label htmlFor="origin">Local de Origem</label>
+			<label htmlFor="origin">📍 Local de Origem</label>
 			<select defaultValue={"DEFAULT"} name="origin" id="origin" onChange={event => handleOnChange(event)} ref={selectInput}>
 				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
-				<option value="East Blue">East Blue</option>
-				<option value="West Blue">West Blue</option>
-				<option value="North Blue">North Blue</option>
-				<option value="South Blue">South Blue</option>
-				<option value="Novo Mundo">Novo Mundo</option>
-				<option value="Grand Line">Grand Line</option>
+				<option value="East Blue">🌊 East Blue</option>
+				<option value="West Blue">📚 West Blue</option>
+				<option value="North Blue">🧣 North Blue</option>
+				<option value="South Blue">⛄ South Blue</option>
+				<option value="Novo Mundo">🌍 Novo Mundo</option>
+				<option value="Grand Line">🧭 Grand Line</option>
 			</select>
 			<section className="history">
 				{

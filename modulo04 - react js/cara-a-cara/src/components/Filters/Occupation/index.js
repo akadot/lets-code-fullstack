@@ -30,13 +30,13 @@ function Occupation({ checkChar, reset }) {
 
 	return (
 		<section className="filter">
-			<label htmlFor="occupation">Ocupação</label>
+			<label htmlFor="occupation">💼 Ocupação</label>
 			<select defaultValue={"DEFAULT"} name="occupation" id="occupation" onChange={event => handleOnChange(event)} ref={selectInput}>
 				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
-				<option value="Pirata">Pirata</option>
-				<option value="Marinha">Marinha</option>
-				<option value="Revolucionário">Revolucionário</option>
-				<option value="Outros">Outros</option>
+				<option value="Pirata">🏴‍☠️ Pirata</option>
+				<option value="Marinha">⚓ Marinha</option>
+				<option value="Revolucionário">✊ Revolucionário</option>
+				<option value="Outros">💩 Outros</option>
 			</select>
 			<section className="history">
 				{

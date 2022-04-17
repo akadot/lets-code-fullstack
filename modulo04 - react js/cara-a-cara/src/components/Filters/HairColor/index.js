@@ -30,16 +30,16 @@ function HairColor({ checkChar, reset }) {
 
 	return (
 		<section className="filter">
-			<label htmlFor="hairColor">Cor do Cabelo</label>
+			<label htmlFor="hairColor">💇‍♂️ Cor do Cabelo</label>
 			<select defaultValue={"DEFAULT"} name="hairColor" id="hairColor" onChange={event => handleOnChange(event)} ref={selectInput}>
 				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
-				<option value="Preto">Preto</option>
-				<option value="Loiro">Loiro</option>
-				<option value="Ruivo">Ruivo</option>
-				<option value="Branco">Branco</option>
-				<option value="Verde">Verde</option>
-				<option value="Azul">Azul</option>
-				<option value="Rosa">Rosa</option>
+				<option value="Preto">⬛ Preto</option>
+				<option value="Loiro">🟨 Loiro</option>
+				<option value="Ruivo">🟥 Ruivo</option>
+				<option value="Branco">⬜ Branco</option>
+				<option value="Verde">🟩 Verde</option>
+				<option value="Azul">🟦 Azul</option>
+				<option value="Rosa">🟪 Rosa</option>
 			</select>
 			<section className="history">
 				{

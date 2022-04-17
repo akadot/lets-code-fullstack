@@ -31,13 +31,13 @@ function Specie({ checkChar, reset }) {
 
 	return (
 		<section className="filter">
-			<label htmlFor="specie">Espécie</label>
+			<label htmlFor="specie">🧬 Espécie</label>
 			<select defaultValue={"DEFAULT"} name="specie" id="specie" onChange={event => handleOnChange(event)} ref={selectInput}>
 				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
-				<option value="Humano">Humano</option>
-				<option value="Tritão">Tritão</option>
-				<option value="Mink">Mink</option>
-				<option value="Gigante">Gigante</option>
+				<option value="Humano">👩 Humano</option>
+				<option value="Tritão">🐟 Tritão</option>
+				<option value="Mink">😺 Mink</option>
+				<option value="Gigante">🗿 Gigante</option>
 			</select>
 			<section className="history">
 				{

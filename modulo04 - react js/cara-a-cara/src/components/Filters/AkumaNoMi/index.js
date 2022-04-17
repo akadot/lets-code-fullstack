@@ -30,11 +30,11 @@ function AkumaNoMi({ checkChar, reset }) {
 
 	return (
 		<section className="filter">
-			<label htmlFor="akumaNoMi">Possui Akuma no Mi?</label>
+			<label htmlFor="akumaNoMi">🍈 Possui Akuma no Mi?</label>
 			<select defaultValue={"DEFAULT"} name="akumaNoMi" id="akumaNoMi" onChange={event => handleOnChange(event)} ref={selectInput}>
 				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
-				<option value="true">Sim</option>
-				<option value="false">Não</option>
+				<option value="true">👍 Sim</option>
+				<option value="false">👎 Não</option>
 			</select>
 			<section className="history">
 				{

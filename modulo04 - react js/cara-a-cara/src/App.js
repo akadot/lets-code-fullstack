@@ -9,7 +9,8 @@ function App() {
     <section className="container">
       <RouterComponent />
       <footer>
-        Made with ☕🌻🎧 by dot_.
+        Made with ☕🌻🎧 by
+        <a href="https://github.com/akadot" target="_blank" rel="noopener noreferrer"> dot_</a>.
       </footer>
     </section>
   );

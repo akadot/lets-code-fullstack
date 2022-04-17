@@ -29,11 +29,11 @@ function Weapon({ checkChar, reset }) {
 	}
 	return (
 		<section className="filter">
-			<label htmlFor="weapons">Usa Armas?</label>
+			<label htmlFor="weapons">🔫 Usa Armas?</label>
 			<select defaultValue={"DEFAULT"} name="weapons" id="weapons" onChange={event => handleOnChange(event)} ref={selectInput}>
 				<option value={"DEFAULT"} disabled> -- Selecione -- </option>
-				<option value="true">Sim</option>
-				<option value="false">Não</option>
+				<option value="true">👍 Sim</option>
+				<option value="false">👎 Não</option>
 			</select>
 			<section className="history">
 				{

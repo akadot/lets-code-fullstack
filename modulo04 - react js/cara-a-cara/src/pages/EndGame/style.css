@@ -1,0 +1,93 @@
+.end-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+#res {
+	font-weight: 700;
+	font-size: 3.2em;
+	text-align: center;
+}
+
+.results {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 50px;
+	padding: 40px 0;
+	font-family: serif;
+}
+
+.results .poster {
+	padding: 10px;
+	width: 220px;
+	height: 350px;
+	background-color: #c4ab87;
+	color: #43352e;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	border: 1px solid #43352e;
+	box-shadow: #241c19 0px 10px 20px, #241c19 0px 6px 6px;
+}
+
+.results .poster h1 {
+	font-size: 2.4em;
+	background: linear-gradient(#43352e, #836b5f, #241c19);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.results .poster h3 {
+	font-stretch: 100%;
+	width: 100%;
+	background: linear-gradient(#241c19, #6b594f, #241c19);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+}
+
+.results .poster h2 {
+	font-size: 1.5em;
+	font-weight: 900;
+	color: #241c19;
+	text-align: center;
+}
+
+.results .poster img {
+	border: 1px solid #43352e;
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+}
+
+.res-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	color: #fff;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.res-info p {
+	font-size: 1.3em;
+	font-weight: 600;
+}
+
+.res-info img {
+	width: 150px;
+}
+
+.res-info #myChoice {
+	align-self: flex-start;
+}
+
+.res-info #yourChoice {
+	align-self: flex-end;
+}

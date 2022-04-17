@@ -26,6 +26,10 @@
 	/* background-color: black; */
 }
 
+.filter option:not(:first-child) {
+	text-align: left;
+}
+
 .history {
 	align-self: flex-start;
 	display: flex;

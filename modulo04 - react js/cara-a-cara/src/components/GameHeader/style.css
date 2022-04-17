@@ -1,0 +1,11 @@
+header {
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px 0;
+}
+
+header img {
+	width: 400px;
+}
