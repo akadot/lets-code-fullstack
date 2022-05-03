@@ -1,39 +1,95 @@
--- SQL Introduction (Postgres)
+-- RELACIONAMENTOS E RESTRIÇÕES (constraints)
 
--- DDL Data Definition Language (CREATE/DROP/ALTER) 
--- DATABASES
-create database LETSCODE with encoding = 'UTF-8'
+-- para relacionamentos, criar  atabela a sr relacionada primeiro
+create table estado(
+	id int generated always as identity,
+	nome varchar(40) not null,
+	uf varchar(2) not null,
+	primary key(id)
+);
 
-drop database LETSCODE
+insert into estado(nome, uf) 
+values('São Paulo', 'SP'),
+('Rio de Janeiro', 'RJ');
 
--- TABLES
-create table CIDADE (
-	id int primary key,
-	nome varchar(60) not null,
-)
+select * from estado
 
-drop table CIDADE
+create table cidade(
+	id int generated always as identity,
+	nome varchar(40) not null,
+	estadoId int not null, --chave estrangeira
+	primary key(id),
+	constraint FK_cidade_estado foreign key(estadoId) references estado(id) -- crie uma restrição, coloque uma chave estrangeira no estadoId e referencie a tabela estado na coluna id
+);
 
-alter table CIDADE alter column nome type varchar(60) -- altera o nome, limitando à 60 caracteres
-alter table CIDADE alter column nome set not null -- altera o nome, dizendo que ela não pode ser nula
+insert into cidade(nome, estadoId) 
+values('Santos', 1),
+('Rio de Janeiro', 2);
 
--- DML Data Manipulate Language (INSERT/UPDATE/DELETE)
--- INSERT 
-insert into CIDADE (id, nome) values (1, 'Descalvado') -- aspas simples sempre
-insert into CIDADE (id, nome) values (2, null) -- nome não é not null
-insert into CIDADE (id, nome) values (3) -- erro
-insert into CIDADE (id) values (4) -- ok, nome == null
+select * from cidade
 
-insert into CIDADE values (5, 'São Carlos') -- ok
-insert into CIDADE values (6, 'São Paulo'), (7, 'Rio de Janeiro') -- multiplos valores
+-- Relacionar tabelas após a criação, sem alterar os dados
 
--- UPDATE
-update CIDADE set nome = 'Cuiabá' where id = 1
-update CIDADE set nome = '' where nome is null -- trocar nulos por vazios (= é is para nulo)
+-- Criar a coluna
+ALTER TABLE estado ADD COLUMN paisId int not null DEFAULT 1;
 
---DELETE
-delete from CIDADE where id = 2
+-- ou
+UPDATE estado set paisId = 1 where paisId is null;
+ALTER TABLE estado ALTER COLUMN paisId SET not null;
 
---DQL Data Query Language (SELECT)
--- SELECT 
-select * from CIDADE
+-- Criar a constraint
+ALTER TABLE estado ADD CONSTRAINT FK_estado_pais foreign key(paisId) references pais(id);
+
+
+-- RELACIONAMENTOS AVANÇADOS (de N para N)
+
+CREATE TABLE produto(
+	id int generated always as identity,
+	nome varchar(100) not null,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE cliente(
+	id int generated always as identity,
+	nome varchar(100) not null,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE devolucao(
+	id int generated always as identity,
+	motivo varchar(100) not null,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE compra(
+	id int generated always as identity,
+	clienteId int not null,
+	motivoDevolucao int,
+	PRIMARY KEY(id),
+	CONSTRAINT FK_cliente_compra foreign key(clienteId) references cliente(id), -- relacionamento simples (1-N ou N-1)
+	CONSTRAINT FK_devolucao_compra foreign key(motivoDevolucao) references devolucao(id)
+);
+
+-- criando uma tabela para transformar N-N em vários N-1
+CREATE TABLE compraProduto(
+	compraId int not null,
+	produtoId int not null,
+	qtd decimal(10,2) not null,
+	PRIMARY KEY(compraId, produtoId), -- chave primária composta
+	CONSTRAINT FK_compra_compraProduto FOREIGN KEY(compraId) REFERENCES compra(id),
+	CONSTRAINT FK_produto_compraProduto FOREIGN KEY(produtoId) REFERENCES produto(id)
+);
+
+CREATE TABLE nfe(
+	id int generated always as identity,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE nfeItens(
+	nfeId int not null,
+	compraId int not null,
+	produtoId int not null,
+	PRIMARY KEY(nfeId, compraId, produtoId),
+	CONSTRAINT FK_nfe_nfeItens FOREIGN KEY(nfeId) REFERENCES nfe(id),
+	CONSTRAINT FK_compraProduto_nfeItens FOREIGN KEY(compraId, produtoId) REFERENCES compraProduto(compraId, produtoId)
+);

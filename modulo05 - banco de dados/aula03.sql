@@ -1,95 +1,24 @@
--- RELACIONAMENTOS E RESTRIÇÕES (constraints)
+--Exemplo de insert com select
+insert into Usuarios
+values ('12312312312', 'Davi Nascimento', 'teste@teste.com',
+	   'du9f8y8dfyd78yfdgfyugff', '1997-10-29',
+	   (select Id from Departamentos where nome = 'Contabilidade'))
 
--- para relacionamentos, criar  atabela a sr relacionada primeiro
-create table estado(
-	id int generated always as identity,
-	nome varchar(40) not null,
-	uf varchar(2) not null,
-	primary key(id)
-);
+--Exemplo de insert com select formatando data
+SET datestyle = "DMY";
 
-insert into estado(nome, uf) 
-values('São Paulo', 'SP'),
-('Rio de Janeiro', 'RJ');
+insert into Usuarios
+values ('12312312314', 'Davi Nascimento', 'teste@teste.com',
+	   'du9f8y8dfyd78yfdgfyugff', '29/10/1997',
+	   (select Id from Departamentos where nome = 'Contabilidade'))
 
-select * from estado
+-- Exemplo de update com select
+update Usuarios set nome = 'Davi G Nascimento'
+where cpf = (select cpf from Usuarios where email = 'teste123@teste.com')
 
-create table cidade(
-	id int generated always as identity,
-	nome varchar(40) not null,
-	estadoId int not null, --chave estrangeira
-	primary key(id),
-	constraint FK_cidade_estado foreign key(estadoId) references estado(id) -- crie uma restrição, coloque uma chave estrangeira no estadoId e referencie a tabela estado na coluna id
-);
+-- Begin, Rollback e Commit
 
-insert into cidade(nome, estadoId) 
-values('Santos', 1),
-('Rio de Janeiro', 2);
-
-select * from cidade
-
--- Relacionar tabelas após a criação, sem alterar os dados
-
--- Criar a coluna
-ALTER TABLE estado ADD COLUMN paisId int not null DEFAULT 1;
-
--- ou
-UPDATE estado set paisId = 1 where paisId is null;
-ALTER TABLE estado ALTER COLUMN paisId SET not null;
-
--- Criar a constraint
-ALTER TABLE estado ADD CONSTRAINT FK_estado_pais foreign key(paisId) references pais(id);
-
-
--- RELACIONAMENTOS AVANÇADOS (de N para N)
-
-CREATE TABLE produto(
-	id int generated always as identity,
-	nome varchar(100) not null,
-	PRIMARY KEY(id)
-);
-
-CREATE TABLE cliente(
-	id int generated always as identity,
-	nome varchar(100) not null,
-	PRIMARY KEY(id)
-);
-
-CREATE TABLE devolucao(
-	id int generated always as identity,
-	motivo varchar(100) not null,
-	PRIMARY KEY(id)
-);
-
-CREATE TABLE compra(
-	id int generated always as identity,
-	clienteId int not null,
-	motivoDevolucao int,
-	PRIMARY KEY(id),
-	CONSTRAINT FK_cliente_compra foreign key(clienteId) references cliente(id), -- relacionamento simples (1-N ou N-1)
-	CONSTRAINT FK_devolucao_compra foreign key(motivoDevolucao) references devolucao(id)
-);
-
--- criando uma tabela para transformar N-N em vários N-1
-CREATE TABLE compraProduto(
-	compraId int not null,
-	produtoId int not null,
-	qtd decimal(10,2) not null,
-	PRIMARY KEY(compraId, produtoId), -- chave primária composta
-	CONSTRAINT FK_compra_compraProduto FOREIGN KEY(compraId) REFERENCES compra(id),
-	CONSTRAINT FK_produto_compraProduto FOREIGN KEY(produtoId) REFERENCES produto(id)
-);
-
-CREATE TABLE nfe(
-	id int generated always as identity,
-	PRIMARY KEY(id)
-);
-
-CREATE TABLE nfeItens(
-	nfeId int not null,
-	compraId int not null,
-	produtoId int not null,
-	PRIMARY KEY(nfeId, compraId, produtoId),
-	CONSTRAINT FK_nfe_nfeItens FOREIGN KEY(nfeId) REFERENCES nfe(id),
-	CONSTRAINT FK_compraProduto_nfeItens FOREIGN KEY(compraId, produtoId) REFERENCES compraProduto(compraId, produtoId)
-);
+BEGIN
+UPDATE -- o que for feito aqui, abaixo do begin, poderá ser desfeito com rollback
+ROLLBACK -- desfaz tudo antes, até o begin
+COMMIT -- confirma as alterações depois do begin
