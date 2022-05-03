@@ -8,3 +8,4 @@ Repositório para armazenar meu aprendizado, no curso de Fullstack Javascript da
 - [Modulo 02](https://github.com/akadot/lets-code-fullstack/tree/master/modulo02%20-%20l%C3%B3gica%20de%20programa%C3%A7%C3%A3o)
 - [Modulo 03](https://github.com/akadot/lets-code-fullstack/tree/master/modulo03%20-%20orienta%C3%A7%C3%A3o%20a%20objetos)
 - [Modulo 04](https://github.com/akadot/lets-code-fullstack/tree/master/modulo04%20-%20react%20js)
+- [Modulo 05](https://github.com/akadot/lets-code-fullstack/tree/master/modulo05%20-%20banco%20de%20dados)
