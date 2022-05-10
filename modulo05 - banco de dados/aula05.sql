@@ -1,3 +1,12 @@
+-- JOIN / COUNT
+
+-- COUNT
+select count(*) --não existe muita diferença entre * e 1
+select count(1) --não existe muita diferença entre * e 1
+select count(coluna) --conta todos da coluna, exceto nulos
+select count(DISTINCT coluna) --conta os que não são repetidos (uniques)
+
+
 -- JOIN
 SELECT * FROM Produto -- tabela da ESQUERDA
 junte com a tabela
