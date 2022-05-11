@@ -53,7 +53,7 @@ SELECT totalProducts(1)
 
 -- STORAGE PROCEDURE (não obriga retorno)
 CREATE PROCEDURE sp_changeBrandProductValue(marca int, incrementValue int)
-LANGUAGE pspgsql
+LANGUAGE plpgsql
 BEGIN ATOMIC
 	UPDATE produto set valor = valor + incrementValue
 	WHERE	marcaId = marca
