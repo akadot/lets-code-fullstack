@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const input = document.querySelector("#city-name");
 	const btn = document.querySelector("#btn");
 	const res = document.querySelector("#res");
-	const API_KEY = '41e748529e2a4ee338fe40ada83855f2'; //se roubar já sabe kkkkkk
+	const API_KEY = ""; //se roubar já sabe kkkkkk
 
 	//Async/Await
 	async function getWeatherAsync(city, callback) {
