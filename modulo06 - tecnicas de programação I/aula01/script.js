@@ -111,3 +111,59 @@ getPokemons((pokes) => {
 	}
 
 })
+
+function pedirPizza(callback) {
+	setTimeout(() => {
+		console.log(`Minha pizza está pronta.`);
+		callback();
+	}, 4000);
+}
+
+function comerPizza(callback) {
+	setTimeout(() => {
+		console.log('Acabaram de comer. Vamos para o show.');
+		callback();
+	}, 2000);
+}
+
+function pedirUber(destino, callback) {
+	setTimeout(() => {
+		console.log(`O Uber chegou, vamos para ${destino}!`);
+		callback();
+	}, 3000);
+}
+
+function viajarAteShow(callback) {
+	setTimeout(() => {
+		console.log('Chegamos, vamos aproveitar o show!');
+		callback();
+	}, 5000);
+}
+
+function ficarDoidaoNoShow(callback) {
+	setTimeout(() => {
+		console.log('O show acabou, vamos embora!');
+		callback();
+	}, 2000);
+}
+
+function irParaCasa() {
+	setTimeout(() => {
+		console.log('Cheguei em casa. A mimir...');
+	}, 3000);
+}
+
+// Callback HELL!!!!!!!
+pedirPizza(() => {
+	comerPizza(() => {
+		pedirUber("o show", () => {
+			viajarAteShow(() => {
+				ficarDoidaoNoShow(() => {
+					pedirUber("a casa", () => {
+						irParaCasa();
+					});
+				});
+			});
+		});
+	});
+});

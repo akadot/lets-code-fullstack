@@ -1,0 +1,34 @@
+html,
+body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #abe9cd;
+	background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+#btn {
+	padding: 8px;
+	margin-top: 10px;
+	background-color: #3eadcf;
+	color: #fff;
+	font-weight: 600;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
