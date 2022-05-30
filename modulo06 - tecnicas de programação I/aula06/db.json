@@ -1,0 +1,29 @@
+{
+  "heroes": [
+    {
+      "id": 3,
+      "nome": "Ms. Marvel",
+      "identidade": "Kamala Khan"
+    },
+    {
+      "id": 5,
+      "nome": "Wolverine",
+      "identidade": "Logan"
+    },
+    {
+      "id": 6,
+      "nome": "Cavaleiro da Lua",
+      "identidade": "Mark Spector"
+    },
+    {
+      "id": 7,
+      "nome": "Hulk",
+      "identidade": "Bruce Banner"
+    },
+    {
+      "nome": "Ant-Man",
+      "identidade": "Hank Pin",
+      "id": 8
+    }
+  ]
+}

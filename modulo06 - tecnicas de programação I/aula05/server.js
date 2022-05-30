@@ -105,7 +105,6 @@ const server = http.createServer((req, res) => {
 	console.log({ url, method });
 	res.writeHead(404);
 	return res.end("Page not found!");
-
 });
 
 server.listen(8080, 'localhost', () => {

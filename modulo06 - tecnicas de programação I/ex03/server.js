@@ -1,27 +1,25 @@
-const Connection = require("./Connection.js");
+const Connection = require("./Connection");
 
-const server = new Connection();
+const server = new Connection("server", 8080, "localhost");
 
-server.createConnection();
-
-server.connect.on('error', (err) => {
+// Caso a porta não esteja disponível, fechar o servidor
+server.on('error', (err) => {
 	console.log(`server error: ${err}`);
-	server.connect.close();
+	server.close();
 });
 
-server.connect.on('message', (buffer, rinfo) => {
+server.on('message', (buffer, rinfo) => {
 	const msg = buffer.toString();
-	const address = server.connect.address();
 
-	console.log(`[${rinfo.address}:${rinfo.port}]: ${msg}`);
-	server.terminal.question(`[${address.address}:${address.port}]`, (answer) => {
-		server.connect.send(answer, rinfo.port, rinfo.address);
+	console.log(`[-]: ${msg}`);
+	server.question(`[-]`, (answer) => {
+		server.send(answer);
 	})
 });
 
-server.connect.on('listening', () => {
-	const address = server.connect.address();
-	console.log(`Servidor rodando ${address.address}:${address.port}.`);
+server.on('listening', () => {
+	console.log(`Servidor rodando`);
 });
 
-server.connect.bind(8080);
+server.bind(8080);
+
