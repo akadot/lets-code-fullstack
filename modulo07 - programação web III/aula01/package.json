@@ -1,0 +1,13 @@
+{
+  "name": "aula01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev-node": "nodemon ./node-server.js",
+    "dev-express": "nodemon ./express-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
