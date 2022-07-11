@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "rm -rf build/ && prettier --write src/ && tsc",
-    "test": "jest --watchAll --coverage"
+    "test": "jest --watchAll --coverage --verbose"
   },
   "author": "",
   "license": "ISC",
