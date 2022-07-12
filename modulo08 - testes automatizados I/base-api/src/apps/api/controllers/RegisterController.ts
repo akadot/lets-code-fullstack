@@ -3,6 +3,7 @@ import { RegisterService } from "../../../services/RegisterService";
 
 interface RegisterRequest {
 	nome: String,
+	cpf: String,
 	dataNasc: String,
 	rua: String,
 	num: Number,
@@ -23,11 +24,12 @@ export class RegisterController {
 	}
 
 	validaRegister = (req: Request<RegisterRequest>, res: Response, next: NextFunction) => {
-		const { nome, dataNasc, profissao = "", primeiroContato = null, rua, num, telefone = "", celular, email, obs = "", created_at } = req.body;
+		const { nome, cpf, dataNasc, profissao = "", primeiroContato = null, rua, num, telefone = "", celular, email, obs = "", created_at } = req.body;
 
 		return res.status(200).json({
 			result: this.#service.validaRegister(
 				String(nome),
+				String(cpf),
 				String(dataNasc),
 				String(rua),
 				Number(num),

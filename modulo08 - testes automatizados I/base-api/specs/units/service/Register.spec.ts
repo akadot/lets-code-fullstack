@@ -17,7 +17,7 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 	it.each([
 		{ nome: 'Australopitécos', validacao: false }, //somente primeiro nome
 		{ nome: 'Zumiro Zika do Baile', validacao: true }, //tudo certo chefia
-		{ nome: 'M4ndr4k3 d0 B41l3', validacao: false }, //números no lugar do nome (nome de principe vai pra pqp)
+		{ nome: 'M4ndr4k3 d0 B41l3', validacao: false }, //números no lugar do nome (nome de principe vai pra pqp, imperialismo e monarquia aqui não)
 		{ nome: '', validacao: false }, //recebe vazio
 	])('Deveria retornar $validacao ao receber $nome.', ({ nome, validacao }) => {
 		const res = _service.validaNome(nome);
@@ -26,6 +26,20 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 	});
 
 	//Testando CPF
+	it.each([
+		{ cpf: '120.126.380-11', validacao: false },
+		{ cpf: '085.544.732-62', validacao: false },
+		{ cpf: '000.000.006-06', validacao: false },
+		{ cpf: '456.128.653-50', validacao: true },
+		{ cpf: "782.897.030-74", validacao: true },
+		{ cpf: 'aaa.aaa.aaa-ad', validacao: false },
+		{ cpf: '111.111.111-11', validacao: false },
+		{ cpf: '', validacao: false }, //recebe vazio
+	])('Deveria retornar $validacao ao receber $cpf.', ({ cpf, validacao }) => {
+		const res = _service.validaCPF(cpf);
+
+		expect(res).toBe(validacao);
+	});
 
 	//Testando Data de Aniversário
 	it.each([
@@ -138,6 +152,7 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 		{
 			body: {
 				nome: "",
+				cpf: "",
 				dataNasc: "20-06-2020",
 				rua: "rua",
 				num: 2,
@@ -154,6 +169,7 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 			body: {
 				nome: "José da Silva",
 				dataNasc: "20-06-2020",
+				cpf: "782.897.030-74",
 				rua: "Rua X",
 				num: 25,
 				email: "email@email.com",
@@ -166,9 +182,9 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 			}, validacao: true
 		}
 	])('Deveria retornar $validacao ao receber todas as informações de cadastro.', ({ validacao, body }) => {
-		const { nome, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato } = body;
+		const { nome, cpf, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato } = body;
 
-		const res = _service.validaRegister(nome, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato);
+		const res = _service.validaRegister(nome, cpf, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato);
 
 		expect(res).toBe(validacao);
 	});
@@ -178,6 +194,7 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 		{
 			body: {
 				nome: longString,
+				cpf: longPhone,
 				dataNasc: longDate,
 				rua: longString,
 				num: 25,
@@ -191,9 +208,9 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 			}
 		}
 	])('Deveria retornar um erro de Caracteres em Excesso.', ({ body }) => {
-		const { nome, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato } = body;
+		const { nome, cpf, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato } = body;
 
 
-		expect(() => _service.validaRegister(nome, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato)).toThrowError("O número de caracteres foi excedido.");
+		expect(() => _service.validaRegister(nome, cpf, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato)).toThrowError("O número de caracteres foi excedido.");
 	});
 })

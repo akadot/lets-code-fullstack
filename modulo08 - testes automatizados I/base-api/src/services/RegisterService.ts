@@ -1,12 +1,13 @@
 export class RegisterService {
 	#profissoes: Array<string>;
 	#canais: Array<string>;
+	#invalidCPF: Array<string>;
 
 	constructor() {
-		this.#profissoes = ["Carteiro", "Advogado"]
-		this.#canais = ["Youtube"]
+		this.#profissoes = ["Carteiro", "Advogado"];
+		this.#canais = ["Youtube"];
+		this.#invalidCPF = ["00000000000", "11111111111", "22222222222", "33333333333", "44444444444", "55555555555", "66666666666", "77777777777", "88888888888", "99999999999"];
 	}
-
 
 	validaNome = (nome: String) => {
 		const resArr = nome.split(" ");
@@ -17,6 +18,36 @@ export class RegisterService {
 		}
 
 		return true;
+	}
+
+	validaCPF = (cpf: String) => {
+		if (!cpf) {
+			return false
+		}
+
+		const cpfLimpo = String(cpf).replace(/[\s.-]/g, "");
+
+		if (this.#invalidCPF.includes(cpfLimpo)) {
+			return false;
+		}
+
+		let sum = 0;
+		let res;
+
+		for (let i = 1; i <= 9; i++) sum = sum + parseInt(cpfLimpo.substring(i - 1, i)) * (11 - i);
+		res = (sum * 10) % 11;
+
+		if ((res == 10) || (res == 11)) { res = 0 };
+		if (res != parseInt(cpfLimpo.substring(9, 10))) { return false };
+
+		sum = 0;
+		for (let i = 1; i <= 10; i++) sum = sum + parseInt(cpfLimpo.substring(i - 1, i)) * (12 - i);
+		res = (sum * 10) % 11;
+
+		if ((res == 10) || (res == 11)) { res = 0 };
+		if (res != parseInt(cpfLimpo.substring(10, 11))) { return false };
+
+		return true
 	}
 
 	validaDataNasc = (dataNasc: String) => {
@@ -141,9 +172,10 @@ export class RegisterService {
 		return true;
 	}
 
-	validaRegister = (nome: String, dataNasc: String, rua: String, num: Number, email: String, celular: String, created_at: String, telefone: String, obs: String, profissao: String, primeiroContato: String) => {
+	validaRegister = (nome: String, cpf: String, dataNasc: String, rua: String, num: Number, email: String, celular: String, created_at: String, telefone: String, obs: String, profissao: String, primeiroContato: String) => {
 
 		if (nome.length >= 50 ||
+			cpf.length >= 50 ||
 			dataNasc.length >= 25 ||
 			rua.length >= 50 ||
 			email.length >= 50 ||
@@ -158,6 +190,7 @@ export class RegisterService {
 
 
 		const nomeValidation = this.validaNome(nome);
+		const cpfValidation = this.validaCPF(cpf);
 		const dataNascValidation = this.validaDataNasc(dataNasc);
 		const profissaoValidation = this.validaProfissao(profissao);
 		const primeiroContatoValidation = this.validaPrimeiroContato(primeiroContato);
@@ -168,6 +201,7 @@ export class RegisterService {
 		const dataCriacaoValidation = this.validaData(created_at);
 
 		if (nomeValidation == false ||
+			cpfValidation == false ||
 			dataNascValidation == false ||
 			profissaoValidation == false ||
 			primeiroContatoValidation == false ||
