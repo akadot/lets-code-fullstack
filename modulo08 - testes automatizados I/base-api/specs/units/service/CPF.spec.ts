@@ -19,35 +19,24 @@ describe('testando CPFService', () => {
 		}
 	})
 
-	it.each([
-		{ cpf: '855.638.840-07', resultado: true },
-		//{ cpf: '85563884007', resultado: true },
-		{ cpf: '820.676.380-51', resultado: false },
-		//{ cpf: '02182899014', resultado: true },
-		{ cpf: 'aaa.aaa.aaa-ad', resultado: false },
-		{ cpf: '111.111.111-51', resultado: false }
-	])('Deve retornar corretamente se o CPF é valido ou não $cpf', ({ cpf, resultado }) => {
-		const cpfValido = _service.validar(cpf)
-
-		expect(cpfValido).toBe(resultado)
-	})
 
 	it('Não deve estourar erro ao executar o método de gerar CPF', () => {
 		expect(() => _service.gerar()).not.toThrow()
 	})
 
-	it.each([
-		{ cpf: '855.638.840-07', resultado: true },
-		//{ cpf: '85563884007', resultado: true },
-		{ cpf: '820.676.380-51', resultado: false },
-		//{ cpf: '02182899014', resultado: true },
-		{ cpf: 'aaa.aaa.aaa-ad', resultado: false },
-		{ cpf: '111.111.111-51', resultado: false }
-	])('Não deve estourar erro ao executar o metodo de validar CPF', ({ cpf, resultado }) => {
-		expect(() => _service.validar(cpf)).not.toThrow()
-	})
 
-	it('Deve retornar um erro, quando passado uma string vazia', () => {
-		expect(() => _service.validar('')).toThrow('Deve ser informado um CPF para validação')
-	})
+	it.each([
+		{ cpf: '120.126.380-11', validacao: false },
+		{ cpf: '085.544.732-62', validacao: false },
+		{ cpf: '000.000.006-06', validacao: false },
+		{ cpf: '456.128.653-50', validacao: true },
+		{ cpf: "782.897.030-74", validacao: true },
+		{ cpf: 'aaa.aaa.aaa-ad', validacao: false },
+		{ cpf: '111.111.111-11', validacao: false },
+		{ cpf: '', validacao: false }, //recebe vazio
+	])('Deveria retornar $validacao ao receber $cpf.', ({ cpf, validacao }) => {
+		const res = _service.validar(cpf);
+
+		expect(res).toBe(validacao);
+	});
 })

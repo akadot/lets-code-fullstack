@@ -25,16 +25,6 @@ export class CPFService {
 	#getRandomNumber = () =>
 		`${Math.floor(Math.random() * 999)}`.padStart(3, "0");
 
-	#digitosSaoIguais = (digits: string): boolean => {
-		for (let i = 0; i < 10; i++) {
-			if (digits === new Array(digits.length + 1).join(String(i))) {
-				return true;
-			}
-		}
-
-		return false;
-	};
-
 	gerar = () => {
 		const a = this.#getRandomNumber();
 		const b = this.#getRandomNumber();
@@ -52,26 +42,33 @@ export class CPFService {
 	};
 
 	validar = (cpf: string) => {
-		if (!cpf)
-			throw new Error('Deve ser informado um CPF para validação')
+		if (!cpf) {
+			return false
+		}
 
 		const cpfLimpo = String(cpf).replace(/[\s.-]/g, "");
-		const cpfArray: string[] = cpf.split(/[\s.-]/g);
-		const numeros = cpfArray.slice(0, 3);
 
-		if (cpfLimpo.length !== 11 || this.#digitosSaoIguais(cpfLimpo)) {
+		if (this.#invalidCPF.includes(cpfLimpo)) {
 			return false;
 		}
 
-		const primeiroDigitoVerificador = this.#obterDigitoVerificador(...numeros);
-		const segundoDigitoVerificador = this.#obterDigitoVerificador(
-			...numeros,
-			primeiroDigitoVerificador.toString()
-		);
+		let sum = 0;
+		let res;
 
-		return (
-			cpfArray[3] === `${primeiroDigitoVerificador}${segundoDigitoVerificador}`
-		);
+		for (let i = 1; i <= 9; i++) sum = sum + parseInt(cpfLimpo.substring(i - 1, i)) * (11 - i);
+		res = (sum * 10) % 11;
+
+		if ((res == 10) || (res == 11)) { res = 0 };
+		if (res != parseInt(cpfLimpo.substring(9, 10))) { return false };
+
+		sum = 0;
+		for (let i = 1; i <= 10; i++) sum = sum + parseInt(cpfLimpo.substring(i - 1, i)) * (12 - i);
+		res = (sum * 10) % 11;
+
+		if ((res == 10) || (res == 11)) { res = 0 };
+		if (res != parseInt(cpfLimpo.substring(10, 11))) { return false };
+
+		return true
 	};
 }
 
