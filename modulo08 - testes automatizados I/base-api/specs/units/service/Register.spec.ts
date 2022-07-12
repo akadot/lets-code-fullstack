@@ -1,5 +1,9 @@
 import { RegisterService } from "../../../src/services/RegisterService";
 
+const longString = "afjpatttwxayakfrceaoyoxiyyidhugvpuzjomdfrfwtcdkvrnrzprwqkndojimksnihsydwnzznadmezzjdqngwtyhntvflgisemjctzvrgzkgvdczaxuwrawdszgaykxhzduzkcxpovshcaytlftyezreusrjnqgnwykdokbnigzhbvkziqdgkeutpcgklybspthmukvdaolzxbkspzbcdbfyammsmayuwqgrfufdlyjgmdqtwpmdajgpsmbmheqbcsgzgzkgqyavxii";
+const longDate = "07/64/75/25/66/99/35/72/71-04-94-55-19-08-75-53-22-33689228249037741282057056";
+const longPhone = "076475256699357271049455190875532233689228249037741282057056";
+
 describe('Realizando bateria de testes com a classe RegisterService', () => {
 	let _service: RegisterService;
 
@@ -25,8 +29,9 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 
 	//Testando Data de Aniversário
 	it.each([
-		{ dataNasc: '11-07-2022', validacao: false }, //data de hoje
+		{ dataNasc: '12-07-2022', validacao: false }, //data de hoje
 		{ dataNasc: '11-09-2022', validacao: false }, //futuro
+		{ dataNasc: '1101121292022', validacao: false }, //formato errado
 		{ dataNasc: 'A', validacao: false }, //contém texto
 		{ dataNasc: '', validacao: false }, //valor vazio
 		{ dataNasc: '26/06/1996', validacao: true }, //ok
@@ -117,10 +122,10 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 	it.each([
 		{ created_at: '22-06-2020', validacao: true }, //ok
 		{ created_at: '22/06/2020', validacao: true }, //ok
-		{ created_at: '06/22/2020', validacao: false }, //invalido
-		{ created_at: '06-22-2020', validacao: false }, //invalido
 		{ created_at: '2A/06/2020', validacao: false }, //inválido
-		{ created_at: '11-08-2022', validacao: false }, //inválido
+		{ created_at: '1101121292022', validacao: false },
+		{ created_at: '2A2432423062020', validacao: false }, //inválido
+		{ created_at: '11-08-2022', validacao: false }, //futuro
 		{ created_at: '', validacao: false }, //é obrigatório
 	])('Deveria retornar $validacao ao receber $created_at.', ({ created_at, validacao }) => {
 		const res = _service.validaData(created_at);
@@ -128,4 +133,67 @@ describe('Realizando bateria de testes com a classe RegisterService', () => {
 		expect(res).toBe(validacao);
 	});
 
+	//Testando Cadastro Completo
+	it.each([
+		{
+			body: {
+				nome: "",
+				dataNasc: "20-06-2020",
+				rua: "rua",
+				num: 2,
+				email: "email@email.com",
+				celular: "1234",
+				created_at: "data",
+				telefone: "email@.com",
+				obs: "obs",
+				profissao: "",
+				primeiroContato: "primeiro"
+			}, validacao: false
+		},
+		{
+			body: {
+				nome: "José da Silva",
+				dataNasc: "20-06-2020",
+				rua: "Rua X",
+				num: 25,
+				email: "email@email.com",
+				celular: "12344564",
+				created_at: "12-07-2022",
+				telefone: "12344564",
+				obs: "Sem observação",
+				profissao: "Advogado",
+				primeiroContato: "Youtube"
+			}, validacao: true
+		}
+	])('Deveria retornar $validacao ao receber todas as informações de cadastro.', ({ validacao, body }) => {
+		const { nome, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato } = body;
+
+		const res = _service.validaRegister(nome, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato);
+
+		expect(res).toBe(validacao);
+	});
+
+	//Testando Cadastro Completo (Caracteres em Excesso)
+	it.each([
+		{
+			body: {
+				nome: longString,
+				dataNasc: longDate,
+				rua: longString,
+				num: 25,
+				email: `${longString}@gmail.com`,
+				celular: longPhone,
+				created_at: longDate,
+				telefone: longPhone,
+				obs: longString,
+				profissao: longString,
+				primeiroContato: longString
+			}
+		}
+	])('Deveria retornar um erro de Caracteres em Excesso.', ({ body }) => {
+		const { nome, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato } = body;
+
+
+		expect(() => _service.validaRegister(nome, dataNasc, rua, num, email, celular, created_at, telefone, obs, profissao, primeiroContato)).toThrowError("O número de caracteres foi excedido.");
+	});
 })

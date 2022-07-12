@@ -3,15 +3,16 @@ export class RegisterService {
 	#canais: Array<string>;
 
 	constructor() {
-		this.#profissoes = ["Carteiro"]
+		this.#profissoes = ["Carteiro", "Advogado"]
 		this.#canais = ["Youtube"]
 	}
 
 
 	validaNome = (nome: String) => {
 		const resArr = nome.split(" ");
+		const findNumber = nome.match(/[0-9]/g)?.join("");
 
-		if (nome.length <= 1 || nome == '' || resArr.length <= 0) {
+		if (resArr.length <= 1 || nome == '' || resArr.length <= 0 || findNumber) {
 			return false;
 		}
 
@@ -26,10 +27,13 @@ export class RegisterService {
 		}
 
 		let dateArr: Array<String> = [];
-		if (dataNasc.indexOf("-")) {
+
+		if (dataNasc.includes("-")) {
 			dateArr = dataNasc.split("-");
-		} else if (dataNasc.indexOf("/")) {
+		} else if (dataNasc.includes("/")) {
 			dateArr = dataNasc.split("/");
+		} else {
+			return false;
 		}
 
 		const today = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }).split(" ")[0];
@@ -109,18 +113,72 @@ export class RegisterService {
 	validaObs = (obs: String) => { return true }
 
 	validaData = (created_at: String) => {
+		let dataLetters = created_at.match(/[a-zA-Z]/g)?.join("");
 
-		return true
+		if (!created_at || created_at == "" || dataLetters) {
+			return false;
+		}
+
+		let dateArr: Array<String> = [];
+		if (created_at.includes("-")) {
+			dateArr = created_at.split("-");
+		} else if (created_at.includes("/")) {
+			dateArr = created_at.split("/");
+		} else {
+			return false;
+		}
+
+		const today = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }).split(" ")[0];
+		const todayArr = today.split("/");
+
+		const todayParse = Date.parse(`${todayArr[1]}-${todayArr[0]}-${todayArr[2]}`)
+		const created_atParse = Date.parse(`${dateArr[1]}-${dateArr[0]}-${dateArr[2]}`)
+
+		if (created_atParse > todayParse) {
+			return false;
+		}
+
+		return true;
 	}
 
 	validaRegister = (nome: String, dataNasc: String, rua: String, num: Number, email: String, celular: String, created_at: String, telefone: String, obs: String, profissao: String, primeiroContato: String) => {
 
-		this.validaDataNasc(dataNasc)
-		this.validaProfissao(profissao)
-		this.validaTelefone(telefone)
-		this.validaEmail(email)
-		this.validaEndereco(rua, num)
+		if (nome.length >= 50 ||
+			dataNasc.length >= 25 ||
+			rua.length >= 50 ||
+			email.length >= 50 ||
+			celular.length >= 50 ||
+			created_at.length >= 50 ||
+			telefone.length >= 50 ||
+			obs.length >= 255 ||
+			profissao.length >= 50 ||
+			primeiroContato.length >= 50) {
+			throw new Error("O número de caracteres foi excedido.")
+		}
 
-		return { nome, dataNasc, profissao, primeiroContato, rua, num, email, obs, created_at, celular, telefone }
+
+		const nomeValidation = this.validaNome(nome);
+		const dataNascValidation = this.validaDataNasc(dataNasc);
+		const profissaoValidation = this.validaProfissao(profissao);
+		const primeiroContatoValidation = this.validaPrimeiroContato(primeiroContato);
+		const telefoneValidation = this.validaTelefone(telefone);
+		const enderecoValidation = this.validaEndereco(rua, num);
+		const celularValidation = this.validaCelular(celular);
+		const obsValidation = this.validaObs(obs);
+		const dataCriacaoValidation = this.validaData(created_at);
+
+		if (nomeValidation == false ||
+			dataNascValidation == false ||
+			profissaoValidation == false ||
+			primeiroContatoValidation == false ||
+			telefoneValidation == false ||
+			enderecoValidation == false ||
+			celularValidation == false ||
+			obsValidation == false ||
+			dataCriacaoValidation == false) {
+			return false;
+		}
+
+		return true;
 	}
 }

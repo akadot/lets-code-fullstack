@@ -16,7 +16,7 @@ export class CPFController {
 		const { cpf } = req.query;
 
 		return res.status(200).json({
-			result: this.#service.getValidation(
+			result: this.#service.validar(
 				String(cpf)
 			),
 		});

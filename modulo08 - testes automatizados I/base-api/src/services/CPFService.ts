@@ -5,28 +5,73 @@ export class CPFService {
 		this.#invalidCPF = ["00000000000", "11111111111", "22222222222", "33333333333", "44444444444", "55555555555", "66666666666", "77777777777", "88888888888", "99999999999"];
 	}
 
-	getValidation = (cpf: string) => {
-		let CPFString = cpf;
+	#obterDigitoVerificador = (...params: string[]) => {
+		const numeros = [].concat.apply(
+			[],
+			params.map((o) => o.split("") as any)
+		);
 
-		if (CPFString.indexOf(".") != -1 || CPFString.indexOf("-") != -1) {
-			const cleanCPF = CPFString.replace(/\D/g, '');
-			CPFString = cleanCPF;
+		let x = 0;
+		let comeco = params.length == 4 ? 11 : 10;
+
+		for (let i = comeco, j = 0; i >= 2; i--, j++) {
+			x += parseInt(numeros[j]) * i;
 		}
 
-		if (this.#invalidCPF.includes(CPFString)) {
-			return false
+		const y = x % 11;
+		return y < 2 ? 0 : 11 - y;
+	};
+
+	#getRandomNumber = () =>
+		`${Math.floor(Math.random() * 999)}`.padStart(3, "0");
+
+	#digitosSaoIguais = (digits: string): boolean => {
+		for (let i = 0; i < 10; i++) {
+			if (digits === new Array(digits.length + 1).join(String(i))) {
+				return true;
+			}
 		}
 
-		if (CPFString.length != 11 || CPFString.length <= 0 || CPFString == undefined) {
+		return false;
+	};
+
+	gerar = () => {
+		const a = this.#getRandomNumber();
+		const b = this.#getRandomNumber();
+		const c = this.#getRandomNumber();
+
+		const primeiroDigito = this.#obterDigitoVerificador(a, b, c);
+		const segundoDigito = this.#obterDigitoVerificador(
+			a,
+			b,
+			c,
+			primeiroDigito.toString()
+		);
+
+		return `${a}.${b}.${c}-${primeiroDigito}${segundoDigito}`;
+	};
+
+	validar = (cpf: string) => {
+		if (!cpf)
+			throw new Error('Deve ser informado um CPF para validação')
+
+		const cpfLimpo = String(cpf).replace(/[\s.-]/g, "");
+		const cpfArray: string[] = cpf.split(/[\s.-]/g);
+		const numeros = cpfArray.slice(0, 3);
+
+		if (cpfLimpo.length !== 11 || this.#digitosSaoIguais(cpfLimpo)) {
 			return false;
 		}
 
-		const arrayCPF = CPFString.split("").map(item => Number(item));
+		const primeiroDigitoVerificador = this.#obterDigitoVerificador(...numeros);
+		const segundoDigitoVerificador = this.#obterDigitoVerificador(
+			...numeros,
+			primeiroDigitoVerificador.toString()
+		);
 
-		console.log(arrayCPF);
-
-		return true;
-	}
-
-	generate = () => { }
+		return (
+			cpfArray[3] === `${primeiroDigitoVerificador}${segundoDigitoVerificador}`
+		);
+	};
 }
+
